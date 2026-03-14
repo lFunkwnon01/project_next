@@ -1,0 +1,39 @@
+---
+description: FASE 2: SISTEMA DE DISEÑO Y TIPOGRAFÍA DINÁMICA
+globs: *
+---
+# FASE 2: SISTEMA DE DISEÑO Y TIPOGRAFÍA DINÁMICA
+
+## 1. CONFIGURACIÓN DE FUENTES (src/config/fonts.ts)
+Configurar `next/font/google` con las siguientes familias y variables CSS:
+- **Playfair Display:** `--font-playfair` (Títulos)
+- **Public Sans:** `--font-public` (Subtítulos)
+- **IBM Plex Sans:** `--font-ibm` (Texto General BPCC)
+- **Source Sans 3:** `--font-source-sans` (Fuentes General BPCC)
+- **Libre Baskerville:** `--font-libre` (Texto Noticias)
+- **Source Serif 4:** `--font-source-serif` (Fuentes Noticias)
+
+## 2. LÓGICA DE ESTILOS POR SECCIÓN
+El agente debe aplicar las fuentes mediante clases de Tailwind o variables CSS en el Layout:
+
+### A. Estilo General (BPCC):
+- Títulos: `font-playfair`
+- Subtítulos: `font-public`
+- Cuerpo de Texto: `font-ibm`
+- Fuentes/Labels: `font-source-sans`
+
+### B. Estilo Específico (NOTICIAS/NEWS):
+- Títulos: `font-playfair`
+- Subtítulos: `font-public`
+- Cuerpo de Texto: `font-libre`
+- Fuentes/Labels: `font-source-serif`
+
+## 3. IMPLEMENTACIÓN TÉCNICA
+- **Tailwind Config:** Extender `tailwind.config.ts` para mapear las variables CSS (ej. `heading: 'var(--font-playfair)'`).
+- **Tokens CSS:** Definir en `src/styles/tokens.css` los pesos de fuente (Bold, SemiBold, Regular) para cada familia.
+- **Componentes UI:** Los componentes en `src/components/ui/` deben usar estas clases de fuente de forma semántica (ej. un componente `Typography` o clases estándar).
+
+## 4. REGLA ANTI-ERRORES
+- Prohibido usar fuentes del sistema (Arial, Times) si no es como fallback.
+- Asegurar que `next/font` cargue los pesos (weights) necesarios para cada familia.
+- El diseño debe ser consistente: No mezclar estilos de Noticias en la página de Nosotros.

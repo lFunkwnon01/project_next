@@ -1,0 +1,22 @@
+@layer theme {
+  :root {
+    /* Playfair Display (Títulos) */
+    --weight-playfair-regular: 400;
+    --weight-playfair-semibold: 600;
+    --weight-playfair-bold: 700;
+
+    /* Public Sans (Subtítulos) */
+    --weight-public-light: 300;
+    --weight-public-regular: 400;
+    --weight-public-bold: 700;
+
+    /* IBM Plex Sans (Texto General BPCC) */
+    --weight-ibm-light: 300;
+    --weight-ibm-regular: 400;
+    --weight-ibm-medium: 500;
+
+    /* Libre Baskerville (Texto Noticias) */
+    --weight-libre-regular: 400;
+    --weight-libre-bold: 700;
+  }
+}

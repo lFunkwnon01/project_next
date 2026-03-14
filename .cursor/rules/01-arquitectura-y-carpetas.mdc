@@ -1,0 +1,35 @@
+---
+description: FASE 1: REORGANIZACIÓN DE CARPETAS (COLOCATION)
+globs: *
+---
+# FASE 1: REORGANIZACIÓN DE CARPETAS (COLOCATION)
+
+## 1. OBJETIVO
+Mover archivos actuales a la estructura Senior sin romper la aplicación, separando la lógica de ruta de la lógica visual.
+
+## 2. MAPA VISUAL DE REFERENCIA (ESTRUCTURA DESEADA)
+src/
+├── app/
+│   ├── layout.tsx              # Root Layout (Fuentes, Providers)
+│   ├── noticias/
+│   │   ├── page.tsx            # Controller (Fetch data & render View)
+│   │   ├── NoticiasView.tsx    # Vista Principal (Listado)
+│   │   └── _components/       # Componentes EXCLUSIVOS de noticias
+│   └── nosotros/
+│       ├── page.tsx            # Controller
+│       └── NosotrosView.tsx    # Vista
+├── components/
+│   ├── ui/                     # Atómicos (Button, Card, Badge)
+│   ├── layout/                 # Estructura (Navbar, Footer)
+│   └── shared/                 # Lógica de negocio reutilizable (NoticiaCard)
+├── services/                   # API Adapters (Llamadas a Spring/Go + Mappers)
+├── types/                      # Domain Models (Interfaces TypeScript)
+├── lib/                        # Shared Utilities (api-client, date-utils)
+└── config/                     # App Configuration (fonts, env, site)
+
+## 3. REGLAS DE IMPLEMENTACIÓN
+- **View Pattern:** Los archivos `page.tsx` NO deben contener JSX complejo. Solo importan la View y pasan props.
+- **Naming:** Las vistas deben terminar en el sufijo `View` (ej. `NoticiasView.tsx`).
+- **Colocation:** Si un componente solo se usa en una ruta, vive en `app/[ruta]/_components/`.
+- **Imports:** Usar siempre alias `@/` y actualizar rutas al mover archivos.
+- **Clean Page:** El archivo `page.tsx` debe ser un Server Component por defecto.

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { fontClasses } from "@/config/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -14,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className="font-sans antialiased text-gray-900 bg-white">
+      <body className={`${fontClasses} font-sans antialiased text-gray-900 bg-white`}>
         {children}
       </body>
     </html>
