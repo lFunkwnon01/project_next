@@ -1,4 +1,4 @@
-import { Playfair_Display, Public_Sans, IBM_Plex_Sans, Source_Sans_3, Libre_Baskerville, Source_Serif_4 } from "next/font/google";
+import { Playfair_Display, Public_Sans, IBM_Plex_Sans, Source_Sans_3, Libre_Baskerville, Source_Serif_4, Inter } from "next/font/google";
 
 export const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -39,6 +39,12 @@ export const sourceSerif = Source_Serif_4({
   display: "swap",
 });
 
+export const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
 export const fontClasses = [
   playfair.variable,
   publicSans.variable,
@@ -46,4 +52,5 @@ export const fontClasses = [
   sourceSans.variable,
   libreBaskerville.variable,
   sourceSerif.variable,
+  inter.variable,
 ].join(" ");

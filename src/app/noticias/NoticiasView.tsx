@@ -31,16 +31,20 @@ export default function NoticiasView() {
     addArticle(newArticle);
   };
 
-  const featuredNews = newsQueue[0];
-  const sideNews = newsQueue.slice(1, 3);
-
-  const recentNews = [
-    { id: 1, category: "Infraestructura", title: "Nuevo ingreso de inversiones al sector", date: "26 DE ABRIL", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et." },
-    { id: 2, category: "Minería", title: "Record de exportaciones de cobre en el 2025", date: "27 DE ENERO", image: "https://images.unsplash.com/photo-1579489225078-27977a77bf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et." },
-    { id: 3, category: "Agroindustria", title: "El Reino Unido como partner agroindustrial", date: "26 DE ABRIL", image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et." },
-    { id: 4, category: "Opinion & Analisis", title: "Convenio Peru - Reino Unido: Doble Tributacion", date: "HACE 10 HORAS", image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et." },
-    { id: 5, category: "Energia", title: "Apertura de nueva solar en Arequipa", date: "26 DE ABRIL", image: "https://images.unsplash.com/photo-1509391366360-feaffa6021fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et." }
+  const allNews = [
+    ...newsQueue,
+    { id: "static-1", category: "Infraestructura", title: "Nuevo ingreso de inversiones al sector", date: "26 DE ABRIL", time: "26 DE ABRIL", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et." },
+    { id: "static-2", category: "Minería", title: "Record de exportaciones de cobre en el 2025", date: "27 DE ENERO", time: "27 DE ENERO", image: "https://images.unsplash.com/photo-1579489225078-27977a77bf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et." },
+    { id: "static-3", category: "Agroindustria", title: "El Reino Unido como partner agroindustrial", date: "26 DE ABRIL", time: "26 DE ABRIL", image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et." },
+    { id: "static-4", category: "Opinion & Analisis", title: "Convenio Peru - Reino Unido: Doble Tributacion", date: "HACE 10 HORAS", time: "HACE 10 HORAS", image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et." },
+    { id: "static-5", category: "Energia", title: "Apertura de nueva solar en Arequipa", date: "26 DE ABRIL", time: "26 DE ABRIL", image: "https://images.unsplash.com/photo-1509391366360-feaffa6021fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et." }
   ];
+
+  const uniqueNews = Array.from(new Map(allNews.map(item => [item.id, item])).values());
+
+  const featuredNews = uniqueNews[0];
+  const sideNews = uniqueNews.slice(1, 3);
+  const recentNews = uniqueNews.slice(3, 8);
 
   const opinionNews = [
     { author: "JOHN KNIGHT", title: "El cuidado de las RIN: Como politica de estado", date: "26 DE ABRIL" },
@@ -58,23 +62,23 @@ export default function NoticiasView() {
   if (!featuredNews) return null;
 
   return (
-    <div className="bg-[#f4f4f4] min-h-screen font-sans text-gray-950 selection:bg-accent selection:text-white overflow-x-hidden">
+    <div className="bg-white min-h-screen font-sans text-gray-950 selection:bg-accent selection:text-white overflow-x-hidden">
 
       {/* ── 1. NAVBAR NEGRO FIJO ── */}
       <nav className={`fixed top-0 left-0 right-0 z-[110] bg-black text-white transition-all duration-300 ${isScrolled ? 'h-24 md:h-28' : 'h-16 md:h-20'}`}>
         <div className="max-w-[1200px] mx-auto w-full h-full px-6 flex flex-col justify-center">
           <div className="flex items-center justify-between relative w-full">
-            <Link href="/" className="flex items-center gap-2 text-[9px] font-bold tracking-[0.2em] font-sans hover:text-accent transition-colors z-10">
+            <Link href="/" className="flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] font-inter hover:text-accent transition-colors z-10">
               <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
               </svg>
               INICIO
             </Link>
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-3">
-              <div className="w-10 md:w-12 h-10 md:h-12 flex items-center justify-center">
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-4">
+              <div className="w-[50px] md:w-[60px] h-[50px] md:h-[60px] flex items-center justify-center">
                 <img src="/assets/isotopo.png" alt="BPCC" className="w-full h-full object-contain" />
               </div>
-              <h1 className="text-2xl md:text-4xl font-serif font-black italic tracking-tighter uppercase leading-none">News</h1>
+              <h1 className="text-4xl md:text-5xl lg:text-[60px] font-libre font-normal tracking-wide text-white leading-none font-style-normal" style={{fontFamily: "Libre Baskerville, serif", fontWeight: 400}}>NEWS</h1>
             </div>
             <div className={`flex flex-col items-end gap-1 z-10 transition-all duration-300 ${isScrolled ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
               <span className="text-[9px] font-medium text-white/80 capitalize">{today}</span>
@@ -84,8 +88,8 @@ export default function NoticiasView() {
               </div>
             </div>
           </div>
-          <div className={`flex justify-center w-full transition-all duration-500 overflow-hidden ${isScrolled ? 'mt-[20px] max-h-10 opacity-100' : 'mt-0 max-h-0 opacity-0 pointer-events-none'}`}>
-            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-[10px] font-black font-sans tracking-[0.2em] text-white/90">
+          <div className={`flex justify-center w-full transition-all duration-500 overflow-hidden ${isScrolled ? 'mt-[20px] max-h-12 opacity-100' : 'mt-0 max-h-0 opacity-0 pointer-events-none'}`}>
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-[10px] font-bold font-inter text-white/90">
               {categories.map(cat => (
                 <button key={cat} className="hover:text-accent transition-colors whitespace-nowrap">{cat}</button>
               ))}
@@ -112,7 +116,7 @@ export default function NoticiasView() {
           </div>
           <nav className="flex flex-wrap justify-between items-center gap-y-2 pt-3 border-t border-gray-100">
             {categories.map(cat => (
-              <button key={cat} className="text-[10px] font-black font-sans text-gray-950 hover:text-accent transition-all tracking-[0.2em] uppercase border-b-2 border-transparent hover:border-accent pb-1">
+              <button key={cat} className="text-[8px] font-bold font-inter text-gray-950 hover:text-accent transition-all tracking-[0.2em] uppercase border-b-2 border-transparent hover:border-accent pb-1">
                 {cat}
               </button>
             ))}
@@ -122,44 +126,37 @@ export default function NoticiasView() {
 
       {isScrolled && <div className="h-[40px]" />}
 
-      <main className="max-w-[1200px] mx-auto px-6 bg-white pb-20 shadow-sm">
+      <main className="max-w-[1200px] mx-auto px-6 bg-white pb-20 overflow-hidden">
 
         {/* ── SECCIÓN 1: NOTICIA DESTACADA ── */}
-        <section className="py-6 border-b border-gray-100">
-          <div className="flex justify-end mb-4">
-            <button
-              onClick={handleSimulatePublish}
-              className="bg-red-600 text-white px-4 py-1.5 text-[9px] font-black tracking-widest uppercase hover:bg-black transition-colors flex items-center gap-2 shadow-sm rounded-sm"
-            >
-              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-              </svg>
-              Simular Publicar Noticia
-            </button>
+        <section className="py-8">
+          <div className="flex justify-start mb-12">
+            <div className="w-[741px] max-w-[70%] h-[1px] bg-black opacity-30"></div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-            <div className="lg:col-span-4 flex flex-col justify-start py-1 h-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-[36px] gap-y-10 items-stretch">
+            <div className="lg:col-span-5 flex flex-col justify-start">
               <div>
-                <h2 className="text-[32px] md:text-[42px] font-serif font-black leading-[1.05] text-gray-950 mb-4 tracking-tight">
-                  <Link href={`/noticias/${featuredNews.id}`} className="hover:text-accent transition-colors">
+                <span className="text-[10px] font-bold font-inter text-[#0335FF] uppercase mb-4 block opacity-5 border-b pb-1 mb-2 tracking-[0.05em] invisible">SPACER</span>
+                <h2 className="text-[44px] md:text-[52px] lg:text-[56px] font-libre font-bold leading-[1.05] text-gray-950 mb-4 tracking-[-0.03em]">
+                  <Link href={`/noticias/${featuredNews.id}`} className="hover:text-[#0335FF] transition-colors">
                     {featuredNews.title}
                   </Link>
                 </h2>
-                <span className="text-[10px] font-black font-sans text-blue-600 uppercase tracking-[0.2em] mb-4 block">
+                <span className="text-[10px] font-bold font-inter text-[#0335FF] leading-none mb-4 block">
                   {featuredNews.category}
                 </span>
-                <p className="text-gray-700 text-[14px] leading-relaxed mb-6 font-news-body line-clamp-6">
+                <p className="text-[#333333] text-[12px] font-normal font-inter leading-relaxed mb-6 line-clamp-6">
                   {featuredNews.excerpt}
                 </p>
               </div>
-              <span className="text-[10px] font-news-source font-bold text-gray-400 uppercase tracking-[0.2em]">
-                {featuredNews.time}
+              <span className="text-[10px] font-bold font-inter text-gray-500 uppercase flex-1 flex flex-col justify-end pb-3">
+                {featuredNews.date || (featuredNews as any).time}
               </span>
             </div>
 
-            <div className="lg:col-span-4 aspect-[4/5] bg-gray-50 overflow-hidden shadow-sm w-full">
-              <Link href={`/noticias/${featuredNews.id}`} className="block w-full h-full">
+            <div className="lg:col-span-4 flex flex-col justify-start">
+              <Link href={`/noticias/${featuredNews.id}`} className="block w-full aspect-[272/300] bg-white overflow-hidden" style={{ minHeight: "300px" }}>
                 <img
                   key={featuredNews.image}
                   src={featuredNews.image}
@@ -169,23 +166,25 @@ export default function NoticiasView() {
               </Link>
             </div>
 
-            <div className="lg:col-span-4 flex flex-col justify-between h-full py-1 lg:pl-6 lg:border-l border-gray-100 gap-8">
+            <div className="lg:col-span-3 flex flex-col justify-start h-full gap-5">
               {sideNews.map((news, idx) => (
-                <div key={news.id} className="group flex flex-col border-b border-gray-50 pb-4 last:border-0 last:pb-0">
-                  <Link href={`/noticias/${news.id}`} className="block aspect-video w-full bg-gray-50 overflow-hidden mb-3">
+                <div key={news.id} className="group flex flex-col flex-1 pb-4 last:pb-0">
+                  <Link href={`/noticias/${news.id}`} className="block w-full aspect-[195/84] bg-white overflow-hidden mb-3">
                     <img src={news.image} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt={news.title} />
                   </Link>
-                  <span className="text-[9px] font-sans font-black text-blue-600 uppercase tracking-widest mb-1 block">
-                    {news.category}
-                  </span>
-                  <h3 className="text-[17px] font-serif font-black text-gray-950 leading-tight mb-1">
-                    <Link href={`/noticias/${news.id}`} className="group-hover:text-accent transition-colors block line-clamp-2">
-                      {news.title}
-                    </Link>
-                  </h3>
-                  <span className="text-[9px] font-news-source font-bold text-gray-400 uppercase mt-1">
-                    {news.date || news.time}
-                  </span>
+                  <div className="flex flex-col flex-shrink-0">
+                    <span className="text-[10px] leading-tight font-bold font-inter text-[#0335FF] block mb-1">
+                      {news.category}
+                    </span>
+                    <h3 className="text-[20px] lg:text-[22px] leading-[1.15] font-libre font-bold text-gray-950 mb-2">
+                      <Link href={`/noticias/${news.id}`} className="group-hover:text-[#0335FF] transition-colors block line-clamp-3">
+                        {news.title}
+                      </Link>
+                    </h3>
+                    <span className="text-[10px] leading-tight font-bold font-inter text-gray-500 uppercase block mt-auto">
+                      {news.date || (news as any).time}
+                    </span>
+                  </div>
                 </div>
               ))}
             </div>
@@ -193,7 +192,8 @@ export default function NoticiasView() {
         </section>
 
         {/* ── SECCIÓN 2: NOTICIAS RECIENTES ── */}
-        <section className="py-10 border-b border-gray-100">
+        <section className="py-12 border-t border-black relative">
+          <div className="absolute top-0 left-0 w-[4px] h-[4px] bg-black"></div>
           <div className="flex items-center gap-4 mb-6">
             <h2 className="text-[11px] font-sans font-black text-gray-950 uppercase tracking-[0.4em] whitespace-nowrap">NOTICIAS RECIENTES</h2>
             <div className="h-[1px] bg-gray-100 flex-grow" />
@@ -212,10 +212,10 @@ export default function NoticiasView() {
                 <div className="aspect-video w-full bg-gray-50 overflow-hidden mb-3">
                   <img src={news.image} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt={news.title} />
                 </div>
-                <span className="text-[8px] font-sans font-black text-blue-700 uppercase mb-1">{news.category}</span>
-                <h4 className="text-[13px] font-serif font-black text-gray-950 leading-tight mb-1 group-hover:text-accent transition-colors line-clamp-2">{news.title}</h4>
-                <p className="text-[10px] font-news-body text-gray-500 leading-tight line-clamp-3 mb-2 flex-grow">{news.excerpt}</p>
-                <span className="text-[8px] font-news-source font-bold text-gray-400 uppercase">{news.date}</span>
+                <span className="text-[8px] font-bold font-inter text-[#0335FF] uppercase mb-1">{news.category}</span>
+                <h4 className="text-[13px] font-libre font-bold text-gray-950 leading-tight mb-1 group-hover:text-accent transition-colors line-clamp-2">{news.title}</h4>
+                <p className="text-[10px] font-normal font-inter text-gray-500 leading-tight line-clamp-3 mb-2 flex-grow">{news.excerpt}</p>
+                <span className="text-[8px] font-bold font-inter text-gray-400 uppercase">{news.date || (news as any).time}</span>
               </article>
             ))}
           </div>
