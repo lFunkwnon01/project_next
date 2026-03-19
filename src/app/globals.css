@@ -128,4 +128,9 @@ body {
   .font-sans {
     font-family: var(--font-inter), var(--font-public), sans-serif;
   }
+
+  .bg-dots {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.3) 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+  }
 }

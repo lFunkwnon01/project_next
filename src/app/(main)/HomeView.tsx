@@ -57,15 +57,15 @@ export default function HomeView() {
 
   return (
     <div className="flex flex-col w-full overflow-hidden bg-white">
-      
+
       {/* 1. HERO PRINCIPAL CON SLIDESHOW */}
       <section className="relative w-full h-[90vh] min-h-[600px] overflow-hidden bg-brand-dark">
         {HERO_SLIDES.map((slide, index) => (
-          <div 
+          <div
             key={index}
             className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentHeroSlide ? 'opacity-100' : 'opacity-0'}`}
           >
-            <div 
+            <div
               className="absolute inset-0 bg-cover bg-center scale-105 animate-[slow-zoom_20s_infinite]"
               style={{ backgroundImage: `url(${slide.image})` }}
             />
@@ -88,7 +88,7 @@ export default function HomeView() {
           <div className="absolute bottom-12 left-6 md:left-12 flex items-center gap-12">
             {/* Arrows */}
             <div className="flex items-center gap-6">
-              <button 
+              <button
                 onClick={() => setCurrentHeroSlide((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length)}
                 className="text-white hover:opacity-50 transition-opacity"
               >
@@ -96,7 +96,7 @@ export default function HomeView() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
-              <button 
+              <button
                 onClick={() => setCurrentHeroSlide((prev) => (prev + 1) % HERO_SLIDES.length)}
                 className="text-white hover:opacity-50 transition-opacity"
               >
@@ -109,7 +109,7 @@ export default function HomeView() {
             {/* Dots */}
             <div className="flex items-center gap-3">
               {HERO_SLIDES.map((_, index) => (
-                <button 
+                <button
                   key={index}
                   onClick={() => setCurrentHeroSlide(index)}
                   className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${index === currentHeroSlide ? 'bg-white w-8' : 'bg-white/40'}`}
@@ -121,29 +121,32 @@ export default function HomeView() {
       </section>
 
       {/* 2. BANDA “PRÓXIMOS EVENTOS” */}
-      <section className="bg-brand-blue-bright py-8 overflow-hidden relative group">
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center gap-12">
-          <h2 className="text-white font-serif text-2xl font-bold whitespace-nowrap shrink-0">
+      <section className="bg-gradient-to-tr from-brand-blue-deep to-brand-blue-bright py-[42px] overflow-hidden relative group">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 bg-dots opacity-50 pointer-events-none" />
+
+        <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center gap-16">
+          <h2 className="text-white font-serif text-4xl font-bold whitespace-nowrap shrink-0">
             Próximos Eventos
           </h2>
-          
+
           <div className="w-full relative overflow-hidden">
-            <div className="flex animate-ticker-slow gap-16 group-hover:pause">
+            <div className="flex animate-ticker-slow gap-20 group-hover:pause">
               {[...MOCK_EVENTS, ...MOCK_EVENTS].map((event, i) => (
-                <div key={i} className="flex items-center gap-8 shrink-0 border-l border-white/20 pl-8 h-full">
-                  <div className="flex flex-col leading-none text-white font-bold opacity-80">
-                    <span className="text-[12px] uppercase tracking-wider">{event.month}</span>
-                    <span className="text-3xl">{event.day}</span>
+                <div key={i} className="flex items-center gap-8 shrink-0 border-l-[2px] border-white pl-8 h-full">
+                  <div className="flex flex-col leading-none text-white font-bold opacity-90">
+                    <span className="text-[14px] uppercase tracking-widest">{event.month}</span>
+                    <span className="text-4xl">{event.day}</span>
                   </div>
-                  <div className="flex flex-col gap-1 pr-8">
-                    <h3 className="text-white font-bold text-sm tracking-wide uppercase line-clamp-1">{event.title}</h3>
-                    <div className="flex items-center gap-4 text-white/60 text-[11px] font-medium">
-                      <span className="flex items-center gap-1.5 shrink-0">
-                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  <div className="flex flex-col gap-1.5 pr-8">
+                    <h3 className="text-white font-bold text-base tracking-wide uppercase line-clamp-1">{event.title}</h3>
+                    <div className="flex items-center gap-6 text-white/70 text-[12px] font-medium">
+                      <span className="flex items-center gap-2 shrink-0">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                         {event.time}
                       </span>
-                      <span className="flex items-center gap-1.5 shrink-0">
-                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                      <span className="flex items-center gap-2 shrink-0">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                         {event.location}
                       </span>
                     </div>
@@ -156,47 +159,42 @@ export default function HomeView() {
       </section>
 
       {/* 3. BRITCHAM EN PERÚ */}
-      <section className="bg-brand-dark py-24 lg:py-32 overflow-hidden">
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          {/* Map Image (Left) */}
-          <div className="relative aspect-square lg:aspect-auto lg:h-[600px] w-full bg-brand-blue-deep/20 rounded-2xl overflow-hidden group">
-            <img 
-              src="https://images.unsplash.com/photo-1582213702164-92e105740449?auto=format&fit=crop&q=80&w=1000" 
-              alt="Peru Map" 
-              className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-80"
-            />
-            {/* Overlay point markers placeholder */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-brand-blue-bright rounded-full animate-ping" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-brand-blue-bright rounded-full" />
-          </div>
+      <section className="bg-[#232323] h-[430px] overflow-hidden flex items-center relative">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12 w-full h-full flex flex-col lg:flex-row items-center justify-between">
 
-          {/* Text & Mini Carousel (Right) */}
-          <div className="flex flex-col gap-10">
-            <div className="space-y-6">
-              <h2 className="text-white font-serif text-4xl md:text-5xl font-bold leading-tight">
-                Britcham en Perú
-              </h2>
-              <p className="text-white/60 text-lg leading-relaxed font-light">
-                Contamos con una presencia estratégica en las principales regiones comerciales del país, conectando a nuestras empresas socias con oportunidades reales de crecimiento y desarrollo.
-              </p>
-            </div>
+          {/* Text Content (Left) */}
+          <div className="flex flex-col h-full justify-center pt-8 pb-12 lg:w-1/2 relative z-10">
+            <h2 className="text-white font-sans text-xl font-bold mb-8">
+              Britcham en Perú
+            </h2>
 
-            {/* Internal Carousel placeholder logic */}
-            <div className="relative w-full aspect-video bg-white/5 rounded-xl overflow-hidden group">
-              <img 
-                src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=800" 
-                alt="Britcham event" 
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
-                <p className="text-white font-bold text-sm tracking-wide uppercase">Networking Anual 2026</p>
+            <div className="flex gap-8 items-start">
+              {/* Vertical Line */}
+              <div className="w-[1.5px] h-32 bg-white/40 shrink-0 mt-2" />
+
+              <div className="max-w-xl">
+                <p className="text-white text-3xl md:text-4xl lg:text-[2.6rem] font-light leading-[1.2]">
+                  <span className="font-serif italic font-medium text-5xl md:text-6xl mr-2">37</span>
+                  años fortaleciendo la relación empresarial entre el Perú y el Reino Unido
+                </p>
               </div>
             </div>
 
-            <Link href="/nosotros" className="text-brand-blue-bright font-bold text-xs uppercase tracking-widest flex items-center gap-3 hover:translate-x-2 transition-transform w-fit">
-              Conoce nuestra historia 
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-            </Link>
+            {/* Pagination Dots */}
+            <div className="flex gap-2 mt-auto pb-4">
+              <div className="w-2 h-2 rounded-full bg-white" />
+              <div className="w-2 h-2 rounded-full bg-white/40" />
+              <div className="w-2 h-2 rounded-full bg-white/40" />
+            </div>
+          </div>
+
+          {/* Map Image (Right) */}
+          <div className="lg:absolute lg:right-0 lg:top-0 lg:h-full lg:w-[55%] flex items-center justify-end">
+            <img
+              src="/assets/mundo.png"
+              alt="World Map Britcham"
+              className="h-[110%] w-auto object-contain object-right opacity-90"
+            />
           </div>
         </div>
       </section>
@@ -205,61 +203,70 @@ export default function HomeView() {
       <section className="bg-white py-24 lg:py-32">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <div className="text-center mb-20">
-            <h2 className="text-brand-dark font-serif text-4xl md:text-5xl font-bold mb-4">
+            <h2 className="text-[#555555] font-sans text-4xl md:text-5xl font-bold mb-4">
               Socios Corporativos
             </h2>
-            <div className="w-20 h-1 bg-brand-blue-bright mx-auto" />
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center border-t border-gray-100 pt-16">
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((i) => (
-              <div key={i} className="flex items-center justify-center p-8 grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 items-center">
+            {[
+              '/assets/gca_logo.png',
+              '/assets/anglo_americano.png',
+              '/assets/upc_logo.png',
+              '/assets/diageo_logo.png',
+              '/assets/britanico_logo.jpg',
+              '/assets/belmond_logo.png'
+            ].map((logo, i) => (
+              <div key={i} className="flex items-center justify-center p-4">
                 <img 
-                  src={`https://api.dicebear.com/7.x/initials/svg?seed=P${i}&backgroundColor=f2f2f2`} 
-                  alt={`Socio ${i}`} 
-                  className="h-12 w-auto object-contain"
+                  src={logo} 
+                  alt={`Socio ${i + 1}`} 
+                  className="h-24 md:h-32 w-auto object-contain transition-all duration-300 hover:scale-105"
                 />
               </div>
             ))}
-          </div>
-
-          <div className="mt-20 text-center">
-            <Link href="/membresia" className="inline-block border-2 border-brand-blue-bright text-brand-blue-bright px-10 py-4 font-bold text-xs uppercase tracking-[0.2em] hover:bg-brand-blue-bright hover:text-white transition-all transform hover:-translate-y-1">
-              Ver todos los socios
-            </Link>
           </div>
         </div>
       </section>
 
       {/* 5. SER SOCIO DE BRITCHAM */}
-      <section className="relative py-24 lg:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-brand-blue-deep to-brand-blue-bright" />
-        <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
-        
-        <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 flex flex-col lg:flex-row items-center justify-between gap-12">
-          <div className="max-w-2xl text-white space-y-6">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold leading-tight">
-              ¿Deseas ser socio de Britcham?
-            </h2>
-            <p className="text-lg md:text-xl text-white/80 font-light leading-relaxed">
-              Únete a la red empresarial más influyente entre Perú y el Reino Unido. Accede a beneficios exclusivos, networking de alto nivel e inteligencia comercial.
-            </p>
-          </div>
-          
-          <div className="shrink-0">
-            <Link href="/contacto" className="inline-flex items-center gap-4 bg-white text-brand-blue-deep px-12 py-5 font-bold text-sm uppercase tracking-widest hover:bg-white/90 transition-all transform hover:-translate-y-1 shadow-2xl">
-              Afíliate aquí
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-            </Link>
+      <section className="bg-[#0151F2] h-[420px] flex items-center relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 bg-dots opacity-40 pointer-events-none" />
+
+        <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 w-full">
+          <div className="max-w-4xl space-y-8 pt-8">
+            {/* Title with line */}
+            <div className="flex items-center gap-6">
+              <h2 className="text-white font-sans text-xl md:text-2xl font-bold whitespace-nowrap">
+                Ser socio de Britcham
+              </h2>
+              <div className="h-[2px] bg-white/40 w-full max-w-2xl" />
+            </div>
+
+            {/* Main Message */}
+            <h3 className="text-white font-serif text-3xl md:text-4xl lg:text-5xl leading-[1.2] max-w-4xl">
+              Conectaa con líderes empresariales y oportunidades bilaterales.
+            </h3>
+
+            {/* Contact Button */}
+            <div className="pt-2">
+              <Link 
+                href="/contacto" 
+                className="inline-block bg-white text-[#0151F2] px-10 py-4 font-bold text-sm uppercase tracking-widest hover:bg-white/95 transition-all transform hover:-translate-y-1 hover:scale-105 shadow-lg hover:shadow-2xl"
+              >
+                CONTACTAR
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
       {/* 6. FULL-WIDTH IMAGE TRANSITION */}
       <section className="w-full h-[60vh] lg:h-[80vh] overflow-hidden">
-        <img 
-          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2000" 
-          alt="Transitional Architecture" 
+        <img
+          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2000"
+          alt="Transitional Architecture"
           className="w-full h-full object-cover grayscale brightness-90 hover:grayscale-0 transition-all duration-[2s] ease-out scale-105"
         />
       </section>
@@ -315,9 +322,9 @@ export default function HomeView() {
             {/* Featured News (Left) */}
             <div className="lg:col-span-8 group cursor-pointer">
               <div className="relative aspect-[16/9] overflow-hidden rounded-2xl mb-8">
-                <img 
-                  src="https://images.unsplash.com/photo-1541746972996-4e0b0f43e01a?auto=format&fit=crop&q=80&w=1200" 
-                  alt="Economic Report" 
+                <img
+                  src="https://images.unsplash.com/photo-1541746972996-4e0b0f43e01a?auto=format&fit=crop&q=80&w=1200"
+                  alt="Economic Report"
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -343,9 +350,9 @@ export default function HomeView() {
               {[1, 2, 3].map((i) => (
                 <div key={i} className="flex gap-6 group cursor-pointer">
                   <div className="w-32 h-24 shrink-0 overflow-hidden rounded-lg">
-                    <img 
-                      src={`https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&q=80&w=400&sig=${i}`} 
-                      alt="News" 
+                    <img
+                      src={`https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&q=80&w=400&sig=${i}`}
+                      alt="News"
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                   </div>
