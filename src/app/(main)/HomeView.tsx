@@ -262,45 +262,41 @@ export default function HomeView() {
         </div>
       </section>
 
-      {/* 6. FULL-WIDTH IMAGE TRANSITION */}
-      <section className="w-full h-[60vh] lg:h-[80vh] overflow-hidden">
+      {/* 6. FULL-WIDTH IMAGE (SERVICIOS) */}
+      <section className="w-full h-[540px] md:h-[580px] overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2000"
-          alt="Transitional Architecture"
-          className="w-full h-full object-cover grayscale brightness-90 hover:grayscale-0 transition-all duration-[2s] ease-out scale-105"
+          src="/assets/image_99.png"
+          alt="Servicios Britcham"
+          className="w-full h-full object-cover"
         />
       </section>
 
-      {/* 7. NUESTROS SERVICIOS */}
-      <section className="bg-brand-dark py-24 lg:py-32">
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-20">
-          <div className="space-y-8">
-            <h2 className="text-white font-serif text-4xl md:text-5xl font-bold leading-tight">
-              Nuestros Servicios
+      {/* 7. BARRA DE SERVICIOS */}
+      <section className="bg-[#212121] min-h-[210px] flex items-center py-12 md:py-0">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12 w-full flex flex-col md:flex-row items-center justify-between gap-8 md:gap-20">
+          <div className="space-y-4 max-w-4xl text-center md:text-left">
+            <h2 className="text-white font-sans text-2xl md:text-3xl font-bold tracking-tight uppercase">
+              Servicios
             </h2>
-            <p className="text-white/60 text-lg leading-relaxed font-light max-w-xl">
-              Brindamos soluciones integrales para potenciar el éxito de su empresa en el entorno binacional.
+            <p className="text-white/80 font-serif text-lg md:text-xl lg:text-2xl leading-relaxed">
+              Promovemos oportunidades estratégicas entre Perú y Reino Unido, mediante networking, acceso a mercados e información clave para los negocios.
             </p>
-            <Link href="/servicios" className="inline-block border border-white/20 text-white px-10 py-4 font-bold text-xs uppercase tracking-[0.2em] hover:bg-white hover:text-brand-dark transition-all">
-              Explorar todos los servicios
-            </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {[
-              { title: 'Comercio Exterior', desc: 'Asesoría especializada en mercados UK.' },
-              { title: 'Networking', desc: 'Conexión con líderes de industria.' },
-              { title: 'Certificaciones', desc: 'Respaldo institucional internacional.' },
-              { title: 'Eventos', desc: 'Plataformas de visibilidad y debate.' }
-            ].map((service, i) => (
-              <div key={i} className="p-8 bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group">
-                <div className="w-10 h-10 mb-6 flex items-center justify-center bg-brand-blue-bright rounded-lg">
-                  <span className="text-white font-bold">{i + 1}</span>
-                </div>
-                <h3 className="text-white font-bold text-xl mb-3">{service.title}</h3>
-                <p className="text-white/40 text-sm leading-relaxed">{service.desc}</p>
-              </div>
-            ))}
+          <div className="shrink-0">
+            <Link 
+              href="/servicios" 
+              className="group flex items-center gap-4 text-white hover:text-white/80 transition-colors"
+            >
+              <span className="font-sans font-bold text-xl md:text-2xl tracking-widest uppercase">
+                Conectar
+              </span>
+              <img 
+                src="/assets/Arrow_right.png" 
+                alt="Arrow" 
+                className="w-8 h-8 md:w-10 md:h-10 transition-transform group-hover:translate-x-2"
+              />
+            </Link>
           </div>
         </div>
       </section>
