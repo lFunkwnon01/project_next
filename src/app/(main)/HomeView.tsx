@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { HomeNewsSection } from '@/components/home/HomeNewsSection';
 
 const HERO_SLIDES = [
   {
@@ -76,10 +77,10 @@ export default function HomeView() {
         {/* Hero Content */}
         <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 h-full flex flex-col justify-end pb-24 lg:pb-32">
           <div className="max-w-3xl space-y-6 animate-fade-up">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white leading-[1.15]">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-inter font-bold text-white leading-[1.15]">
               {HERO_SLIDES[currentHeroSlide].title}
             </h1>
-            <p className="text-lg md:text-xl text-white/80 font-light leading-relaxed max-w-2xl">
+            <p className="text-lg md:text-xl text-white/80 font-inter font-normal leading-relaxed max-w-2xl">
               {HERO_SLIDES[currentHeroSlide].description}
             </p>
           </div>
@@ -126,7 +127,7 @@ export default function HomeView() {
         <div className="absolute inset-0 bg-dots opacity-50 pointer-events-none" />
 
         <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center gap-16">
-          <h2 className="text-white font-serif text-4xl font-bold whitespace-nowrap shrink-0">
+          <h2 className="text-white font-inter text-4xl font-bold whitespace-nowrap shrink-0">
             Próximos Eventos
           </h2>
 
@@ -134,13 +135,13 @@ export default function HomeView() {
             <div className="flex animate-ticker-slow gap-20 group-hover:pause">
               {[...MOCK_EVENTS, ...MOCK_EVENTS].map((event, i) => (
                 <div key={i} className="flex items-center gap-8 shrink-0 border-l-[2px] border-white pl-8 h-full">
-                  <div className="flex flex-col leading-none text-white font-bold opacity-90">
+                  <div className="flex flex-col leading-none text-white font-inter font-semibold opacity-90">
                     <span className="text-[14px] uppercase tracking-widest">{event.month}</span>
                     <span className="text-4xl">{event.day}</span>
                   </div>
                   <div className="flex flex-col gap-1.5 pr-8">
-                    <h3 className="text-white font-bold text-base tracking-wide uppercase line-clamp-1">{event.title}</h3>
-                    <div className="flex items-center gap-6 text-white/70 text-[12px] font-medium">
+                    <h3 className="text-white font-inter font-bold text-base tracking-wide uppercase line-clamp-1">{event.title}</h3>
+                    <div className="flex items-center gap-6 text-white/70 text-[12px] font-inter font-normal">
                       <span className="flex items-center gap-2 shrink-0">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                         {event.time}
@@ -164,17 +165,17 @@ export default function HomeView() {
 
           {/* Text Content (Left) */}
           <div className="flex flex-col h-full justify-center pt-8 pb-12 lg:w-1/2 relative z-10">
-            <h2 className="text-white font-sans text-xl font-bold mb-8">
+            <h2 className="text-white font-inter text-2xl font-bold mb-8">
               Britcham en Perú
             </h2>
 
             <div className="flex gap-8 items-start">
               {/* Vertical Line */}
-              <div className="w-[1.5px] h-32 bg-white/40 shrink-0 mt-2" />
+              <div className="w-[3px] h-32 bg-white/40 shrink-0 mt-2" />
 
               <div className="max-w-xl">
-                <p className="text-white text-3xl md:text-4xl lg:text-[2.6rem] font-light leading-[1.2]">
-                  <span className="font-serif italic font-medium text-5xl md:text-6xl mr-2">37</span>
+                <p className="text-white text-3xl md:text-4xl lg:text-4xl font-libre font-bold leading-[1.2]">
+                  <span className="font-libre font-bold text-5xl md:text-6xl mr-2">37</span>
                   años fortaleciendo la relación empresarial entre el Perú y el Reino Unido
                 </p>
               </div>
@@ -203,7 +204,7 @@ export default function HomeView() {
       <section className="bg-white py-24 lg:py-32">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <div className="text-center mb-20">
-            <h2 className="text-[#555555] font-sans text-4xl md:text-5xl font-bold mb-4">
+            <h2 className="text-[#555555] font-inter text-4xl md:text-5xl font-bold mb-4">
               Socios Corporativos
             </h2>
           </div>
@@ -238,14 +239,14 @@ export default function HomeView() {
           <div className="max-w-4xl space-y-8 pt-8">
             {/* Title with line */}
             <div className="flex items-center gap-6">
-              <h2 className="text-white font-sans text-xl md:text-2xl font-bold whitespace-nowrap">
+              <h2 className="text-white font-inter text-2xl font-bold whitespace-nowrap">
                 Ser socio de Britcham
               </h2>
               <div className="h-[2px] bg-white/40 w-full max-w-2xl" />
             </div>
 
             {/* Main Message */}
-            <h3 className="text-white font-serif text-3xl md:text-4xl lg:text-5xl leading-[1.2] max-w-4xl">
+            <h3 className="text-white font-libre text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.2] max-w-[60%]">
               Conectaa con líderes empresariales y oportunidades bilaterales.
             </h3>
 
@@ -253,7 +254,7 @@ export default function HomeView() {
             <div className="pt-2">
               <Link 
                 href="/contacto" 
-                className="inline-block bg-white text-[#0151F2] px-10 py-4 font-bold text-sm uppercase tracking-widest hover:bg-white/95 transition-all transform hover:-translate-y-1 hover:scale-105 shadow-lg hover:shadow-2xl"
+                className="inline-block bg-white text-[#0151F1] px-10 py-4 font-inter font-bold text-[26px] uppercase tracking-widest hover:bg-white/95 transition-all transform hover:-translate-y-1 hover:scale-105 shadow-lg hover:shadow-2xl"
               >
                 CONTACTAR
               </Link>
@@ -275,10 +276,10 @@ export default function HomeView() {
       <section className="bg-[#212121] min-h-[210px] flex items-center py-12 md:py-0">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 w-full flex flex-col md:flex-row items-center justify-between gap-8 md:gap-20">
           <div className="space-y-4 max-w-4xl text-center md:text-left">
-            <h2 className="text-white font-sans text-2xl md:text-3xl font-bold tracking-tight uppercase">
+            <h2 className="text-white font-inter text-xl font-bold tracking-tight uppercase">
               Servicios
             </h2>
-            <p className="text-white/80 font-serif text-lg md:text-xl lg:text-2xl leading-relaxed">
+            <p className="text-white/80 font-libre text-base leading-relaxed">
               Promovemos oportunidades estratégicas entre Perú y Reino Unido, mediante networking, acceso a mercados e información clave para los negocios.
             </p>
           </div>
@@ -288,7 +289,7 @@ export default function HomeView() {
               href="/servicios" 
               className="group flex items-center gap-4 text-white hover:text-white/80 transition-colors"
             >
-              <span className="font-sans font-bold text-xl md:text-2xl tracking-widest uppercase">
+              <span className="font-inter font-bold text-xl md:text-2xl tracking-widest uppercase">
                 Conectar
               </span>
               <img 
@@ -302,68 +303,7 @@ export default function HomeView() {
       </section>
 
       {/* 8. NEWS (EDITORIAL) */}
-      <section className="bg-white py-24 lg:py-32">
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-          <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-16">
-            <h2 className="text-brand-dark font-serif text-4xl md:text-5xl font-bold">
-              Noticias & Insights
-            </h2>
-            <Link href="/noticias" className="text-brand-blue-bright font-bold text-xs uppercase tracking-widest flex items-center gap-3 hover:gap-5 transition-all">
-              Ver todas las noticias
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            {/* Featured News (Left) */}
-            <div className="lg:col-span-8 group cursor-pointer">
-              <div className="relative aspect-[16/9] overflow-hidden rounded-2xl mb-8">
-                <img
-                  src="https://images.unsplash.com/photo-1541746972996-4e0b0f43e01a?auto=format&fit=crop&q=80&w=1200"
-                  alt="Economic Report"
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <div className="absolute top-6 left-6 px-4 py-2 bg-brand-blue-bright text-white text-[10px] font-bold uppercase tracking-widest">
-                  Reporte Económico
-                </div>
-              </div>
-              <h3 className="text-3xl font-serif font-bold text-brand-dark mb-4 leading-tight group-hover:text-brand-blue-bright transition-colors">
-                El Reino Unido lidera la inversión extranjera directa en el sector minero peruano
-              </h3>
-              <p className="text-gray-500 font-light leading-relaxed mb-6">
-                Un análisis detallado sobre cómo las empresas británicas están impulsando la sostenibilidad y la innovación tecnológica en los andes...
-              </p>
-              <div className="flex items-center gap-4 text-[10px] font-bold uppercase tracking-widest text-gray-400">
-                <span>15 Mar, 2026</span>
-                <span>•</span>
-                <span>Por: Britcham Insights</span>
-              </div>
-            </div>
-
-            {/* Side News (Right) */}
-            <div className="lg:col-span-4 flex flex-col gap-10">
-              {[1, 2, 3].map((i) => (
-                <div key={i} className="flex gap-6 group cursor-pointer">
-                  <div className="w-32 h-24 shrink-0 overflow-hidden rounded-lg">
-                    <img
-                      src={`https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&q=80&w=400&sig=${i}`}
-                      alt="News"
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <h4 className="text-sm font-bold text-brand-dark leading-snug group-hover:text-brand-blue-bright transition-colors">
-                      {i === 1 ? 'Webinar: Oportunidades comerciales post-Brexit' : i === 2 ? 'Directorio BPCC 2026: Nuevos hitos estratégicos' : 'Networking After Hours: Galería completa'}
-                    </h4>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">12 Mar, 2026</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <HomeNewsSection />
 
       {/* REST OF SECTIONS WILL BE ADDED IN NEXT STEPS */}
     </div>
