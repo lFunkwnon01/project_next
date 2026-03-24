@@ -76,7 +76,7 @@ export default function HomeView() {
 
         {/* Hero Content */}
         <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 h-full flex flex-col justify-end pb-24 lg:pb-32">
-          <div className="max-w-3xl space-y-6 animate-fade-up">
+          <div className="max-w-5xl space-y-6 animate-fade-up">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-inter font-bold text-white leading-[1.15]">
               {HERO_SLIDES[currentHeroSlide].title}
             </h1>
@@ -165,7 +165,7 @@ export default function HomeView() {
 
           {/* Text Content (Left) */}
           <div className="flex flex-col h-full justify-center pt-8 pb-12 lg:w-1/2 relative z-10">
-            <h2 className="text-white font-inter text-2xl font-bold mb-8">
+            <h2 className="text-white font-inter text-3xl font-bold mb-8">
               Britcham en Perú
             </h2>
 
@@ -219,9 +219,9 @@ export default function HomeView() {
               '/assets/belmond_logo.png'
             ].map((logo, i) => (
               <div key={i} className="flex items-center justify-center p-4">
-                <img 
-                  src={logo} 
-                  alt={`Socio ${i + 1}`} 
+                <img
+                  src={logo}
+                  alt={`Socio ${i + 1}`}
                   className="h-24 md:h-32 w-auto object-contain transition-all duration-300 hover:scale-105"
                 />
               </div>
@@ -231,35 +231,37 @@ export default function HomeView() {
       </section>
 
       {/* 5. SER SOCIO DE BRITCHAM */}
-      <section className="bg-[#0151F2] h-[420px] flex items-center relative overflow-hidden">
+      <section className="bg-[#0151F2] h-[430px] flex items-start relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 bg-dots opacity-40 pointer-events-none" />
 
-        <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 w-full">
-          <div className="max-w-4xl space-y-8 pt-8">
-            {/* Title with line */}
-            <div className="flex items-center gap-6">
-              <h2 className="text-white font-inter text-2xl font-bold whitespace-nowrap">
-                Ser socio de Britcham
-              </h2>
-              <div className="h-[2px] bg-white/40 w-full max-w-2xl" />
-            </div>
+        <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 w-full h-full flex flex-col justify-between py-10 md:py-12">
 
-            {/* Main Message */}
-            <h3 className="text-white font-libre text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.2] max-w-[60%]">
-              Conectaa con líderes empresariales y oportunidades bilaterales.
-            </h3>
-
-            {/* Contact Button */}
-            <div className="pt-2">
-              <Link 
-                href="/contacto" 
-                className="inline-block bg-white text-[#0151F1] px-10 py-4 font-inter font-bold text-[26px] uppercase tracking-widest hover:bg-white/95 transition-all transform hover:-translate-y-1 hover:scale-105 shadow-lg hover:shadow-2xl"
-              >
-                CONTACTAR
-              </Link>
-            </div>
+          {/* TOP: Title with line */}
+          <div className="flex items-center gap-6">
+            <h2 className="text-white font-inter text-base md:text-3xl font-bold whitespace-nowrap">
+              Ser socio de Britcham
+            </h2>
+            <div className="h-[3px] bg-white/90 flex-1" />
           </div>
+
+          {/* MIDDLE: Main Message */}
+          <h3 className="text-white font-libre text-4xl md:text-5xl lg:text-[50px] font-bold leading-[1.15] max-w-[80%]">
+            Conecta con líderes empresariales y oportunidades bilaterales.
+          </h3>
+
+          {/* BOTTOM: Button + arrows */}
+          <div className="flex items-center justify-between w-full">
+            <Link
+              href="/contacto"
+              className="inline-flex items-center justify-center bg-white text-[#0151F2] px-10 py-4 font-inter font-bold text-[16px] uppercase tracking-[0.1em] hover:bg-white/95 transition-all hover:-translate-y-1"
+            >
+              CONTACTAR
+            </Link>
+
+
+          </div>
+
         </div>
       </section>
 
@@ -276,25 +278,25 @@ export default function HomeView() {
       <section className="bg-[#212121] min-h-[210px] flex items-center py-12 md:py-0">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 w-full flex flex-col md:flex-row items-center justify-between gap-8 md:gap-20">
           <div className="space-y-4 max-w-4xl text-center md:text-left">
-            <h2 className="text-white font-inter text-xl font-bold tracking-tight uppercase">
+            <h2 className="text-white font-inter text-2xl font-bold tracking-tight uppercase">
               Servicios
             </h2>
-            <p className="text-white/80 font-libre text-base leading-relaxed">
+            <p className="text-white/90 font-libre text-base leading-relaxed">
               Promovemos oportunidades estratégicas entre Perú y Reino Unido, mediante networking, acceso a mercados e información clave para los negocios.
             </p>
           </div>
 
           <div className="shrink-0">
-            <Link 
-              href="/servicios" 
-              className="group flex items-center gap-4 text-white hover:text-white/80 transition-colors"
+            <Link
+              href="/servicios"
+              className="group flex items-center gap-2 text-white hover:text-white/80 transition-colors"
             >
               <span className="font-inter font-bold text-xl md:text-2xl tracking-widest uppercase">
                 Conectar
               </span>
-              <img 
-                src="/assets/Arrow_right.png" 
-                alt="Arrow" 
+              <img
+                src="/assets/Arrow_right.png"
+                alt="Arrow"
                 className="w-8 h-8 md:w-10 md:h-10 transition-transform group-hover:translate-x-2"
               />
             </Link>
