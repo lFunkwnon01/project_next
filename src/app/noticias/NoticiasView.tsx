@@ -78,7 +78,7 @@ export default function NoticiasView() {
               <div className="w-[50px] md:w-[60px] h-[50px] md:h-[60px] flex items-center justify-center">
                 <img src="/assets/isotopo.png" alt="BPCC" className="w-full h-full object-contain" />
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-[60px] font-libre font-normal tracking-wide text-white leading-none font-style-normal" style={{fontFamily: "Libre Baskerville, serif", fontWeight: 400}}>NEWS</h1>
+              <h1 className="text-4xl md:text-5xl lg:text-[50px] font-libre font-normal tracking-wide text-white leading-none font-style-normal" style={{ fontFamily: "Libre Baskerville, serif", fontWeight: 400 }}>NEWS</h1>
             </div>
             <div className={`flex flex-col items-end gap-1 z-10 transition-all duration-300 ${isScrolled ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
               <span className="text-[9px] font-medium text-white/80 capitalize">{today}</span>
@@ -129,19 +129,18 @@ export default function NoticiasView() {
       <main className="max-w-[1200px] mx-auto px-6 bg-white pb-20 overflow-hidden">
 
         {/* ── SECCIÓN 1: NOTICIA DESTACADA ── */}
-        <section className="py-8">
+        <section className="py-1">
           <div className="flex justify-start mb-12">
-            <div className="w-[741px] max-w-[70%] h-[1px] bg-black opacity-30"></div>
+            <div className="w-[1200px] max-w-[100%] h-[2px] bg-black opacity-100"></div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-[36px] gap-y-10 items-stretch">
-            <div className="lg:col-span-5 flex flex-col justify-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-[30px] gap-y-10 items-stretch">
+            <div className="lg:col-span-5 flex flex-col justify-start mt-[-38px]">
               <div>
                 <span className="text-[10px] font-bold font-inter text-[#0335FF] uppercase mb-4 block opacity-5 border-b pb-1 mb-2 tracking-[0.05em] invisible">SPACER</span>
-                <h2 className="text-[44px] md:text-[52px] lg:text-[56px] font-libre font-bold leading-[1.05] text-gray-950 mb-4 tracking-[-0.03em]">
-                  <Link href={`/noticias/${featuredNews.id}`} className="hover:text-[#0335FF] transition-colors">
-                    {featuredNews.title}
-                  </Link>
+                <h2 className="text-[36px] md:text-[32px] lg:text-[40px] font-libre font-bold leading-[1.18] text-gray-950 mb-3 tracking-[-0.02em]">                    <Link href={`/noticias/${featuredNews.id}`} className="hover:text-[#0335FF] transition-colors">
+                  {featuredNews.title}
+                </Link>
                 </h2>
                 <span className="text-[10px] font-bold font-inter text-[#0335FF] leading-none mb-4 block">
                   {featuredNews.category}

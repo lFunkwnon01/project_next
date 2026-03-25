@@ -275,7 +275,7 @@ export default function HomeView() {
       </section>
 
       {/* 7. BARRA DE SERVICIOS */}
-      <section className="bg-[#212121] min-h-[210px] flex items-center py-12 md:py-0">
+      <section className="bg-[#212121] min-h-[220px] flex items-center py-12 md:py-0">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 w-full flex flex-col md:flex-row items-center justify-between gap-8 md:gap-20">
           <div className="space-y-4 max-w-4xl text-center md:text-left">
             <h2 className="text-white font-inter text-2xl font-bold tracking-tight uppercase">
@@ -286,7 +286,7 @@ export default function HomeView() {
             </p>
           </div>
 
-          <div className="shrink-0">
+          <div className="shrink-0 mr-25">
             <Link
               href="/servicios"
               className="group flex items-center gap-2 text-white hover:text-white/80 transition-colors"
