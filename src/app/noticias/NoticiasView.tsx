@@ -99,8 +99,8 @@ export default function NoticiasView() {
       </nav>
 
       {/* ── 2. CABECERA SECUNDARIA BLANCA ── */}
-      <header className={`pt-16 md:pt-20 bg-white border-b border-gray-100 transition-all duration-500 ${isScrolled ? 'opacity-0 -translate-y-6 pointer-events-none' : 'opacity-100 translate-y-0'}`}>
-        <div className="max-w-[1200px] mx-auto px-6 py-4">
+      <header className={`pt-16 md:pt-20 bg-white transition-all duration-500 ${isScrolled ? 'opacity-0 -translate-y-6 pointer-events-none' : 'opacity-100 translate-y-0'}`}>
+        <div className="max-w-[1000px] mx-auto px-6 py-4">
           <div className="flex justify-between items-center text-[9px] font-sans font-bold tracking-widest uppercase text-gray-400 mb-4">
             <div className="flex gap-6">
               <div className="flex items-center gap-2">
@@ -114,7 +114,7 @@ export default function NoticiasView() {
             </div>
             <span className="font-news-source font-medium capitalize">{today}</span>
           </div>
-          <nav className="flex flex-wrap justify-between items-center gap-y-2 pt-3 border-t border-gray-100">
+          <nav className="flex flex-wrap justify-between items-center gap-y-2 pt-3">
             {categories.map(cat => (
               <button key={cat} className="text-[8px] font-bold font-inter text-gray-950 hover:text-accent transition-all tracking-[0.2em] uppercase border-b-2 border-transparent hover:border-accent pb-1">
                 {cat}
@@ -126,171 +126,298 @@ export default function NoticiasView() {
 
       {isScrolled && <div className="h-[40px]" />}
 
-      <main className="max-w-[1200px] mx-auto px-6 bg-white pb-20 overflow-hidden">
+      {/* ── MAIN: solo fondo blanco, sin restricciones de ancho ── */}
+      <main className="w-full bg-white pb-20 overflow-hidden">
 
         {/* ── SECCIÓN 1: NOTICIA DESTACADA ── */}
-        <section className="py-1">
-          <div className="flex justify-start mb-12">
-            <div className="w-[1200px] max-w-[100%] h-[2px] bg-black opacity-100"></div>
-          </div>
+        <section className="py-0">
+          <div className="max-w-[1200px] mx-auto px-6">
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-[30px] gap-y-10 items-stretch">
-            <div className="lg:col-span-5 flex flex-col justify-start mt-[-38px]">
-              <div>
-                <span className="text-[10px] font-bold font-inter text-[#0335FF] uppercase mb-4 block opacity-5 border-b pb-1 mb-2 tracking-[0.05em] invisible">SPACER</span>
-                <h2 className="text-[36px] md:text-[32px] lg:text-[40px] font-libre font-bold leading-[1.18] text-gray-950 mb-3 tracking-[-0.02em]">                    <Link href={`/noticias/${featuredNews.id}`} className="hover:text-[#0335FF] transition-colors">
-                  {featuredNews.title}
-                </Link>
-                </h2>
-                <span className="text-[10px] font-bold font-inter text-[#0335FF] leading-none mb-4 block">
-                  {featuredNews.category}
-                </span>
-                <p className="text-[#333333] text-[12px] font-normal font-inter leading-relaxed mb-6 line-clamp-6">
-                  {featuredNews.excerpt}
-                </p>
-              </div>
-              <span className="text-[10px] font-bold font-inter text-gray-500 uppercase flex-1 flex flex-col justify-end pb-3">
-                {featuredNews.date || (featuredNews as any).time}
-              </span>
+            {/* Línea */}
+            <div className="flex justify-center mb-12">
+              <div className="w-[952px] max-w-[100%] h-[2px] bg-black opacity-100"></div>
             </div>
 
-            <div className="lg:col-span-4 flex flex-col justify-start">
-              <Link href={`/noticias/${featuredNews.id}`} className="block w-full aspect-[272/300] bg-white overflow-hidden" style={{ minHeight: "300px" }}>
-                <img
-                  key={featuredNews.image}
-                  src={featuredNews.image}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                  alt="Noticia destacada"
-                />
-              </Link>
-            </div>
+            {/* CONTENEDOR FLEX */}
+            <div className="flex flex-col lg:flex-row gap-x-[40px] gap-y-10 items-stretch">
 
-            <div className="lg:col-span-3 flex flex-col justify-start h-full gap-5">
-              {sideNews.map((news, idx) => (
-                <div key={news.id} className="group flex flex-col flex-1 pb-4 last:pb-0">
-                  <Link href={`/noticias/${news.id}`} className="block w-full aspect-[195/84] bg-white overflow-hidden mb-3">
-                    <img src={news.image} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt={news.title} />
-                  </Link>
-                  <div className="flex flex-col flex-shrink-0">
-                    <span className="text-[10px] leading-tight font-bold font-inter text-[#0335FF] block mb-1">
-                      {news.category}
-                    </span>
-                    <h3 className="text-[20px] lg:text-[22px] leading-[1.15] font-libre font-bold text-gray-950 mb-2">
-                      <Link href={`/noticias/${news.id}`} className="group-hover:text-[#0335FF] transition-colors block line-clamp-3">
-                        {news.title}
-                      </Link>
-                    </h3>
-                    <span className="text-[10px] leading-tight font-bold font-inter text-gray-500 uppercase block mt-auto">
-                      {news.date || (news as any).time}
-                    </span>
-                  </div>
+              {/* ── BLOQUE IZQUIERDO (TEXTO) ── */}
+              {/* 🔧 controla ancho aquí */}
+              <div className="w-full lg:w-[450px] flex-shrink-0 flex flex-col justify-start mt-[-38px]">
+                <div>
+                  <span className="text-[10px] font-bold font-inter text-[#0335FF] uppercase mb-4 block opacity-5 border-b pb-1 mb-2 tracking-[0.05em] invisible">
+                    SPACER
+                  </span>
+
+                  <h2 className="text-[36px] md:text-[32px] lg:text-[42px] font-libre font-bold leading-[1.18] text-gray-950 mb-4 tracking-[-0.02em]">
+                    <Link href={`/noticias/${featuredNews.id}`} className="hover:text-[#0335FF] transition-colors">
+                      {featuredNews.title}
+                    </Link>
+                  </h2>
+
+                  <span className="text-[10px] font-bold font-inter text-[#0335FF] leading-none mb-4 block">
+                    {featuredNews.category}
+                  </span>
+
+                  {/* 🔧 controla ancho del texto aquí */}
+                  <p className="max-w-[390px] text-[#333333] text-[12px] font-normal font-inter leading-relaxed mb-6 line-clamp-6">
+                    {featuredNews.excerpt}
+                  </p>
                 </div>
-              ))}
+
+                <span className="text-[10px] font-bold font-inter text-gray-500 uppercase block mt-1 pb-8">
+                  {featuredNews.date || (featuredNews as any).time}
+                </span>
+              </div>
+
+              {/* ── BLOQUE CENTRO (IMAGEN) ── */}
+              {/* 🔧 crece automáticamente */}
+              <div className="flex-1 flex flex-col lg:-ml-[70px] justify-start">
+                <Link
+                  href={`/noticias/${featuredNews.id}`}
+                  className="block w-full aspect-[272/300] bg-white overflow-hidden"
+                  style={{ minHeight: "300px" }}
+                >
+                  <img
+                    key={featuredNews.image}
+                    src={featuredNews.image}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                    alt="Noticia destacada"
+                  />
+                </Link>
+              </div>
+
+              {/* ── BLOQUE DERECHO (LATERALES) ── */}
+              {/* 🔧 controla ancho aquí */}
+              <div className="w-full lg:w-[280px] flex-shrink-0 flex flex-col justify-start h-full gap-5">
+                {sideNews.map((news, idx) => (
+                  <div key={news.id} className="group flex flex-col flex-1 pb-4 last:pb-0">
+                    <Link href={`/noticias/${news.id}`} className="block w-full aspect-[195/84] bg-white overflow-hidden mb-3">
+                      <img
+                        src={news.image}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        alt={news.title}
+                      />
+                    </Link>
+
+                    <div className="flex flex-col flex-shrink-0">
+                      <span className="text-[10px] leading-tight font-bold font-inter text-[#0335FF] block mb-1">
+                        {news.category}
+                      </span>
+
+                      <h3 className="text-[15px] lg:text-[17px] leading-[1.15] font-libre font-bold text-gray-950 mb-2">
+                        <Link href={`/noticias/${news.id}`} className="group-hover:text-[#0335FF] transition-colors block line-clamp-2">
+                          {news.title}
+                        </Link>
+                      </h3>
+
+                      <span className="text-[10px] leading-tight font-bold font-inter text-gray-500 uppercase block mt-auto">
+                        {news.date || (news as any).time}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
             </div>
           </div>
         </section>
 
         {/* ── SECCIÓN 2: NOTICIAS RECIENTES ── */}
-        <section className="py-12 border-t border-black relative">
-          <div className="absolute top-0 left-0 w-[4px] h-[4px] bg-black"></div>
-          <div className="flex items-center gap-4 mb-6">
-            <h2 className="text-[11px] font-sans font-black text-gray-950 uppercase tracking-[0.4em] whitespace-nowrap">NOTICIAS RECIENTES</h2>
-            <div className="h-[1px] bg-gray-100 flex-grow" />
-            <div className="flex gap-2">
-              <button className="text-gray-300 hover:text-black transition-colors">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
-              </button>
-              <button className="text-black">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-              </button>
+        <section className="pt-[48px] pb-[48px] relative">
+          <div className="max-w-[1200px] mx-auto px-[24px]">
+
+            {/* ── CABECERA ── */}
+            <div className="flex items-center relative mb-[32px] mt-[-40px]">
+
+              {/* ── GRUPO IZQUIERDO: TÍTULO + LÍNEA ── */}
+              <div className="flex items-center gap-[16px] w-full">
+                <h2 className="text-[16px] font-inter font-bold text-black uppercase tracking-[-0.01em] whitespace-nowrap">
+                  NOTICIAS RECIENTES
+                </h2>
+                <div className="h-[2px] flex-1 bg-black" />
+              </div>
+
+              {/* ── FLECHAS ── */}
+              {/* 🔧 cambia mt-[...] para bajarlas más o menos */}
+              <div className="absolute right-[30px] flex items-center gap-[20px] mt-[50px]">
+                <button className="text-gray-300 hover:text-black transition-colors">
+                  <svg className="w-[16px] h-[16px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+
+                <button className="text-black">
+                  <svg className="w-[16px] h-[16px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
             </div>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-5">
-            {recentNews.map(news => (
-              <article key={news.id} className="flex flex-col group cursor-pointer border-r border-gray-50 last:border-0 pr-2 last:pr-0">
-                <div className="aspect-video w-full bg-gray-50 overflow-hidden mb-3">
-                  <img src={news.image} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt={news.title} />
-                </div>
-                <span className="text-[8px] font-bold font-inter text-[#0335FF] uppercase mb-1">{news.category}</span>
-                <h4 className="text-[13px] font-libre font-bold text-gray-950 leading-tight mb-1 group-hover:text-accent transition-colors line-clamp-2">{news.title}</h4>
-                <p className="text-[10px] font-normal font-inter text-gray-500 leading-tight line-clamp-3 mb-2 flex-grow">{news.excerpt}</p>
-                <span className="text-[8px] font-bold font-inter text-gray-400 uppercase">{news.date || (news as any).time}</span>
-              </article>
-            ))}
+
+            {/* ── CONTENEDOR DE TARJETAS ── */}
+            {/* 🔧 cambia gap horizontal / vertical aquí */}
+            <div className="flex flex-wrap gap-x-[35px] gap-y-[28px]">
+
+              {recentNews.map(news => (
+                <article
+                  key={news.id}
+                  className="min-w-[200px]  w-[200px] flex flex-col group cursor-pointer"
+                >
+                  {/* 🔧 controla altura exacta de imagen aquí */}
+                  <div className="w-full h-[130px] bg-gray-50 overflow-hidden mb-[12px]">
+                    <img
+                      src={news.image}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      alt={news.title}
+                    />
+                  </div>
+
+                  {/* 🔧 categoría */}
+                  <span className="text-[8px] font-bold font-inter text-[#0335FF] uppercase mb-[6px]">
+                    {news.category}
+                  </span>
+
+                  {/* 🔧 controla tamaño + líneas del título */}
+                  <h4 className="text-[13px] font-libre font-bold text-gray-950 leading-[1.15] mb-[10px] group-hover:text-accent transition-colors line-clamp-2">
+                    {news.title}
+                  </h4>
+
+                  {/* 🔧 controla tamaño + líneas del extracto */}
+                  <p className="text-[10px] font-normal font-inter text-gray-500 leading-[1.3] line-clamp-3 mb-[10px]">
+                    {news.excerpt}
+                  </p>
+
+                  {/* 🔧 fecha */}
+                  <span className="text-[10px] font-bold font-inter text-gray-500 uppercase mt-auto">
+                    {news.date || (news as any).time}
+                  </span>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
         {/* ── SECCIÓN 3: OPINION & ANALISIS ── */}
-        <section className="py-10 border-b border-gray-100">
-          <div className="flex items-center gap-4 mb-6">
-            <h2 className="text-[11px] font-sans font-black text-gray-950 uppercase tracking-[0.4em] whitespace-nowrap">OPINION & ANALISIS</h2>
-            <div className="h-[1px] bg-gray-100 flex-grow" />
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-            <div className="lg:col-span-7 relative group cursor-pointer overflow-hidden h-[320px]">
-              <div className="w-full h-full bg-gray-900 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-[4s]" alt="Opinion" />
-              </div>
-              <div className="absolute inset-x-0 bottom-0 bg-black/80 text-white px-6 py-6">
-                <h3 className="text-xl md:text-2xl font-serif font-black leading-tight italic mb-2">
-                  El cuidado de las RIN: Como politica de estado para la estabilidad monetaria del Peru
-                </h3>
-                <div className="flex justify-between items-end">
-                  <div className="space-y-1">
-                    <span className="text-[9px] font-news-source font-black text-white/60 uppercase tracking-[0.2em]">ESCRITO POR JAVIER GONZALEZ</span>
-                    <p className="text-[8px] font-news-source font-bold text-white/40 tracking-widest uppercase">26 DE ABRIL</p>
+        <section className="pt-[40px] pb-[40px] border-b border-gray-100">
+          <div className="max-w-[1200px] mx-auto px-[24px]">
+
+            {/* ── CABECERA ── */}
+            <div className="flex items-center gap-[16px] mb-[24px] mt-[-50px]">
+              <h2 className="text-[16px] font-inter font-bold text-black uppercase tracking-[-0.01em] whitespace-nowrap">
+                OPINION & ANALISIS
+              </h2>
+              <div className="h-[1.5px] flex-1 bg-black" />
+            </div>
+
+            {/* ── CONTENEDOR PRINCIPAL ── */}
+            <div className="flex flex-col lg:flex-row gap-[32px] items-stretch">
+
+              {/* ── BLOQUE IZQUIERDO: NOTA PRINCIPAL ── */}
+              <div className="w-full lg:w-[680px] flex-shrink-0">
+                <div className="relative group cursor-pointer overflow-hidden w-full h-[360px]">
+
+                  {/* Imagen */}
+                  <div className="w-full h-full bg-gray-900 overflow-hidden">
+                    <img
+                      src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                      className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-[4000ms]"
+                      alt="Opinion"
+                    />
+                  </div>
+
+                  {/* Overlay */}
+                  <div className="absolute inset-x-0 bottom-0 bg-black/80 px-[24px] py-[24px] text-white">
+                    <h3 className="text-[26px] md:text-[30px] font-libre font-bold italic leading-[1.15] mb-[10px]">
+                      El cuidado de las RIN: Como politica de estado para la estabilidad monetaria del Peru
+                    </h3>
+
+                    <div className="flex justify-between items-end">
+                      <div className="flex flex-col gap-[4px]">
+                        <span className="text-[10px] font-inter font-bold text-white/60 uppercase tracking-[0.12em]">
+                          ESCRITO POR JAVIER GONZALEZ
+                        </span>
+                        <p className="text-[9px] font-inter font-bold text-white/40 uppercase tracking-[0.18em]">
+                          26 DE ABRIL
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="lg:col-span-5 flex flex-col divide-y divide-gray-100">
-              {opinionNews.map((op, i) => (
-                <div key={i} className="flex justify-between items-center group cursor-pointer py-4 first:pt-0 last:pb-0">
-                  <div className="flex flex-col gap-1 pr-4">
-                    <h4 className="text-[15px] font-serif font-black text-gray-950 leading-tight group-hover:text-accent transition-colors">{op.title}</h4>
-                    <div className="flex gap-3 mt-1">
-                      <span className="text-[9px] font-sans font-black text-blue-700 uppercase tracking-widest">{op.author}</span>
-                      <span className="text-[8px] font-news-source font-bold text-gray-400 tracking-[0.2em] uppercase">{op.date}</span>
+
+              {/* ── BLOQUE DERECHO: LISTA ── */}
+              <div className="w-full lg:w-[420px] flex-shrink-0 flex flex-col divide-y divide-gray-100">
+                {opinionNews.map((op, i) => (
+                  <div
+                    key={i}
+                    className="flex justify-between items-center group cursor-pointer py-[18px] first:pt-0 last:pb-0"
+                  >
+                    <div className="flex flex-col gap-[6px] pr-[16px]">
+                      <h4 className="text-[18px] font-libre font-bold text-gray-950 leading-[1.15] group-hover:text-accent transition-colors">
+                        {op.title}
+                      </h4>
+
+                      <div className="flex gap-[12px] mt-[4px]">
+                        <span className="text-[10px] font-inter font-bold text-blue-700 uppercase tracking-[0.08em]">
+                          {op.author}
+                        </span>
+
+                        <span className="text-[9px] font-inter font-bold text-gray-400 uppercase tracking-[0.12em]">
+                          {op.date}
+                        </span>
+                      </div>
                     </div>
+
+                    <svg
+                      className="w-[16px] h-[16px] text-gray-300 group-hover:text-black transition-all flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
                   </div>
-                  <svg className="w-4 h-4 text-gray-300 group-hover:text-black transition-all flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
+                ))}
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* ── SECCIÓN 4: PROXIMOS EVENTOS ── */}
+        {/* 🔧 Cambia max-w-[1200px] · px-6 · mx-auto de forma INDEPENDIENTE */}
+        <section className="py-10">
+          <div className="max-w-[1200px] mx-auto px-6">
+            <div className="flex items-center gap-4 mb-8">
+              <h2 className="text-[11px] font-sans font-black text-gray-950 uppercase tracking-[0.4em] whitespace-nowrap">PROXIMOS EVENTOS</h2>
+              <div className="h-[1px] bg-gray-100 flex-grow" />
+              <div className="flex gap-2">
+                <button className="text-gray-300 hover:text-black transition-colors">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+                </button>
+                <button className="text-black">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                </button>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {events.map((ev, i) => (
+                <div key={i} className="flex flex-col text-center group cursor-pointer">
+                  <span className="text-[9px] font-news-source font-bold text-gray-400 uppercase tracking-[0.2em] mb-2">{ev.date}</span>
+                  <h4 className="text-[13px] font-serif font-black text-gray-950 leading-tight mb-3 h-8 line-clamp-2 px-1 group-hover:text-accent transition-colors">{ev.title}</h4>
+                  <div className="aspect-video w-full bg-gray-50 overflow-hidden mb-4 shadow-sm">
+                    <img src={ev.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" alt={ev.title} />
+                  </div>
+                  <div className="flex justify-center">
+                    <button className="bg-black text-white py-2 px-8 text-[10px] font-sans font-black tracking-widest uppercase hover:bg-accent transition-all w-full max-w-[120px]">VER</button>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ── SECCIÓN 4: PROXIMOS EVENTOS ── */}
-        <section className="py-10">
-          <div className="flex items-center gap-4 mb-8">
-            <h2 className="text-[11px] font-sans font-black text-gray-950 uppercase tracking-[0.4em] whitespace-nowrap">PROXIMOS EVENTOS</h2>
-            <div className="h-[1px] bg-gray-100 flex-grow" />
-            <div className="flex gap-2">
-              <button className="text-gray-300 hover:text-black transition-colors">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
-              </button>
-              <button className="text-black">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-              </button>
-            </div>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {events.map((ev, i) => (
-              <div key={i} className="flex flex-col text-center group cursor-pointer">
-                <span className="text-[9px] font-news-source font-bold text-gray-400 uppercase tracking-[0.2em] mb-2">{ev.date}</span>
-                <h4 className="text-[13px] font-serif font-black text-gray-950 leading-tight mb-3 h-8 line-clamp-2 px-1 group-hover:text-accent transition-colors">{ev.title}</h4>
-                <div className="aspect-video w-full bg-gray-50 overflow-hidden mb-4 shadow-sm">
-                  <img src={ev.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" alt={ev.title} />
-                </div>
-                <div className="flex justify-center">
-                  <button className="bg-black text-white py-2 px-8 text-[10px] font-sans font-black tracking-widest uppercase hover:bg-accent transition-all w-full max-w-[120px]">VER</button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
       </main>
 
       {/* ── NEWSLETTER ── */}
