@@ -2,9 +2,10 @@ import NoticiaDetalleView from './NoticiaDetalleView';
 
 export function generateStaticParams() {
   return [
-    { id: '1' },
-    { id: '2' },
-    { id: '3' },
+    { id: 'exportaciones-ru' },
+    { id: 'cuidado-rin' },
+    { id: 'social-37-anos' },
+    { id: 'comercio-10-marcas' }
   ];
 }
 
@@ -13,6 +14,7 @@ export const metadata = {
   description: 'Detalle de la noticia de la Cámara de Comercio Peruano Británica',
 };
 
-export default function NoticiaPage({ params }: { params: { id: string } }) {
-  return <NoticiaDetalleView id={params.id} />;
+export default async function NoticiaPage({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = await params;
+  return <NoticiaDetalleView id={resolvedParams.id} />;
 }

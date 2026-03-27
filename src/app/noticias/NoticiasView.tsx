@@ -299,7 +299,7 @@ export default function NoticiasView() {
         </section>
 
         {/* ── SECCIÓN 3: OPINION & ANALISIS ── */}
-        <section className="pt-[40px] pb-[40px] border-b border-gray-100">
+        <section className="pt-[40px] pb-[56px] border-b border-gray-100">
           <div className="max-w-[1200px] mx-auto px-[24px]">
 
             {/* ── CABECERA ── */}
@@ -314,8 +314,8 @@ export default function NoticiasView() {
             <div className="flex flex-col lg:flex-row gap-[32px] items-stretch">
 
               {/* ── BLOQUE IZQUIERDO: NOTA PRINCIPAL ── */}
-              <div className="w-full lg:w-[680px] flex-shrink-0">
-                <div className="relative group cursor-pointer overflow-hidden w-full h-[360px]">
+              <div className="w-full lg:w-[800px] flex-shrink-0">
+                <div className="relative group cursor-pointer overflow-hidden w-full h-[420px]">
 
                   {/* Imagen */}
                   <div className="w-full h-full bg-gray-900 overflow-hidden">
@@ -327,42 +327,71 @@ export default function NoticiasView() {
                   </div>
 
                   {/* Overlay */}
-                  <div className="absolute inset-x-0 bottom-0 bg-black/80 px-[24px] py-[24px] text-white">
-                    <h3 className="text-[26px] md:text-[30px] font-libre font-bold italic leading-[1.15] mb-[10px]">
+                  <div className="absolute inset-x-0 bottom-0 bg-black/100 px-[24px] py-[60px] text-white">
+                    <h3 className="text-[26px] md:text-[30px] font-libre font-bold leading-[1.15] mb-[20px]">
                       El cuidado de las RIN: Como politica de estado para la estabilidad monetaria del Peru
                     </h3>
 
+                    {/* ── AUTOR + FECHA + BOTÓN LEER ── */}
                     <div className="flex justify-between items-end">
-                      <div className="flex flex-col gap-[4px]">
-                        <span className="text-[10px] font-inter font-bold text-white/60 uppercase tracking-[0.12em]">
+
+                      {/* Autor y fecha */}
+                      <div className="flex flex-col gap-[10px]">
+                        <span className="text-[12px] font-inter font-bold text-white/100 uppercase tracking-[0.06em]">
                           ESCRITO POR JAVIER GONZALEZ
                         </span>
-                        <p className="text-[9px] font-inter font-bold text-white/40 uppercase tracking-[0.18em]">
+                        <p className="text-[10px] font-inter font-bold text-white/100 uppercase tracking-[0.06em]">
                           26 DE ABRIL
                         </p>
                       </div>
+
+                      {/* ── BOTÓN LEER ── */}
+                      <Link
+                        href="/noticias/cuidado-rin"
+                        className="flex items-center gap-[8px] group/leer hover:scale-105 active:scale-95 transition-all duration-200 mr-[40px]"
+                      >
+                        <span className="text-[17px] font-inter font-medium text-white uppercase tracking-[0.08em] group-hover/leer:text-gray-300 transition-colors">
+                          LEER
+                        </span>
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="text-white group-hover/leer:text-gray-300 group-hover/leer:translate-x-0.5 group-hover/leer:-translate-y-0.5 transition-all"
+                        >
+                          <path
+                            d="M7 17L17 7M17 7H7M17 7V17"
+                            stroke="currentColor"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </Link>
+
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* ── BLOQUE DERECHO: LISTA ── */}
-              <div className="w-full lg:w-[420px] flex-shrink-0 flex flex-col divide-y divide-gray-100">
+              <div className="w-full lg:w-[340px] flex-shrink-0 flex flex-col divide-y divide-gray-100 mt-[40px]">
                 {opinionNews.map((op, i) => (
                   <div
                     key={i}
-                    className="flex justify-between items-center group cursor-pointer py-[18px] first:pt-0 last:pb-0"
+                    className="flex justify-between items-center group cursor-pointer py-[24px] first:pt-0 last:pb-0"
                   >
                     <div className="flex flex-col gap-[6px] pr-[16px]">
-                      <h4 className="text-[18px] font-libre font-bold text-gray-950 leading-[1.15] group-hover:text-accent transition-colors">
+                      <h4 className="text-[20px] font-libre font-bold text-gray-950 leading-[1.15] group-hover:text-accent transition-colors">
                         {op.title}
                       </h4>
 
-                      <div className="flex gap-[12px] mt-[4px]">
+                      <div className="flex flex-col gap-[4px] mt-[6px]">
                         <span className="text-[10px] font-inter font-bold text-blue-700 uppercase tracking-[0.08em]">
                           {op.author}
                         </span>
-
                         <span className="text-[9px] font-inter font-bold text-gray-400 uppercase tracking-[0.12em]">
                           {op.date}
                         </span>
@@ -370,7 +399,7 @@ export default function NoticiasView() {
                     </div>
 
                     <svg
-                      className="w-[16px] h-[16px] text-gray-300 group-hover:text-black transition-all flex-shrink-0"
+                      className="w-[20px] h-[20px] text-gray-800 group-hover:text-black transition-all flex-shrink-0 mt-[-20px] relative right-[20px]"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -385,45 +414,112 @@ export default function NoticiasView() {
           </div>
         </section>
 
+        {/* sction. SER SOCIO DE BRITCHAM */}
+        <section className="bg-[#0151F2] h-[430px] flex items-start relative overflow-hidden">
+          {/* Background Pattern */}
+          <div className="absolute inset-0 bg-dots opacity-40 pointer-events-none" />
+
+          <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 w-full h-full flex flex-col justify-between py-10 md:py-12">
+
+            {/* TOP: Title with line */}
+            <div className="flex items-center gap-6">
+              <h2 className="text-white font-inter text-base md:text-3xl font-bold whitespace-nowrap">
+                Ser socio de Britcham
+              </h2>
+              <div className="h-[3px] bg-white/90 flex-1" />
+            </div>
+
+            {/* MIDDLE: Main Message */}
+            <h3 className="text-white font-libre text-4xl md:text-5xl lg:text-[50px] font-bold leading-[1.15] max-w-[80%]">
+              Conecta con líderes empresariales y oportunidades bilaterales.
+            </h3>
+
+            {/* BOTTOM: Button + arrows */}
+            <div className="flex items-center justify-between w-full">
+              <Link
+                href="/contacto"
+                className="inline-flex items-center justify-center bg-white text-[#0151F2] px-10 py-4 font-inter font-bold text-[16px] uppercase tracking-[0.1em] hover:bg-white/95 transition-all hover:-translate-y-1"
+              >
+                CONTACTAR
+              </Link>
+
+
+            </div>
+
+          </div>
+        </section>
+
         {/* ── SECCIÓN 4: PROXIMOS EVENTOS ── */}
-        {/* 🔧 Cambia max-w-[1200px] · px-6 · mx-auto de forma INDEPENDIENTE */}
-        <section className="py-10">
-          <div className="max-w-[1200px] mx-auto px-6">
-            <div className="flex items-center gap-4 mb-8">
-              <h2 className="text-[11px] font-sans font-black text-gray-950 uppercase tracking-[0.4em] whitespace-nowrap">PROXIMOS EVENTOS</h2>
-              <div className="h-[1px] bg-gray-100 flex-grow" />
-              <div className="flex gap-2">
+        <section className="pt-[40px] pb-[-5px]">
+          <div className="max-w-[1200px] mx-auto px-[24px]">
+
+            {/* ── CABECERA ── */}
+            <div className="flex items-center relative mb-[32px] mt-[-10px]">
+
+              {/* ── GRUPO IZQUIERDO: TÍTULO + LÍNEA ── */}
+              <div className="flex items-center gap-[16px] w-full">
+                <h2 className="text-[16px] font-inter font-bold text-black uppercase tracking-[-0.01em] whitespace-nowrap">
+                  PROXIMOS EVENTOS
+                </h2>
+                <div className="h-[2px] flex-1 bg-black" />
+              </div>
+
+              {/* ── FLECHAS ── */}
+              {/* 🔧 cambia mt-[...] para bajarlas más o menos */}
+              <div className="absolute right-[30px] flex items-center gap-[20px] mt-[50px]">
                 <button className="text-gray-300 hover:text-black transition-colors">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+                  <svg className="w-[16px] h-[16px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
                 </button>
                 <button className="text-black">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                  <svg className="w-[16px] h-[16px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
                 </button>
               </div>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+
+            {/* ── GRID DE EVENTOS ── */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-x-[60px] gap-y-[20px]">
               {events.map((ev, i) => (
                 <div key={i} className="flex flex-col text-center group cursor-pointer">
-                  <span className="text-[9px] font-news-source font-bold text-gray-400 uppercase tracking-[0.2em] mb-2">{ev.date}</span>
-                  <h4 className="text-[13px] font-serif font-black text-gray-950 leading-tight mb-3 h-8 line-clamp-2 px-1 group-hover:text-accent transition-colors">{ev.title}</h4>
-                  <div className="aspect-video w-full bg-gray-50 overflow-hidden mb-4 shadow-sm">
-                    <img src={ev.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" alt={ev.title} />
+
+                  {/* Fecha */}
+                  <span className="text-[10px] font-inter font-bold text-gray-500 uppercase tracking-[0.06em] mb-[8px]">
+                    {ev.date}
+                  </span>
+
+                  {/* Título */}
+                  <h4 className="text-[15px] font-libre font-black text-gray-900 leading-tight mb-[-5px] h-[72px] px-[4px] group-hover:text-red-600 transition-colors">
+                    {ev.title}
+                  </h4>
+
+                  {/* Imagen */}
+                  <div className="w-full h-[160px] bg-gray-50 overflow-hidden mb-[16px] shadow-sm">
+                    <img
+                      src={ev.image}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1000ms]"
+                      alt={ev.title}
+                    />
                   </div>
+
+                  {/* Botón VER */}
                   <div className="flex justify-center">
-                    <button className="bg-black text-white py-2 px-8 text-[10px] font-sans font-black tracking-widest uppercase hover:bg-accent transition-all w-full max-w-[120px]">VER</button>
+                    <button className="bg-black text-white py-[4px] px-[32px] text-[10px] font-inter font-bold tracking-widest uppercase hover:bg-accent transition-all w-full max-w-[120px]">
+                      VER
+                    </button>
                   </div>
+
                 </div>
               ))}
             </div>
+
           </div>
         </section>
 
       </main>
 
-      {/* ── NEWSLETTER ── */}
-      <div className="bg-blue-700 py-6 text-center">
-        <h2 className="text-white text-[15px] font-black tracking-[0.3em] uppercase">SUBSCRIBETE A NUESTRO NEWSLETTER</h2>
-      </div>
 
       {/* ── FOOTER ── */}
       <footer className="bg-black text-white py-12 px-6 border-t border-white/5">

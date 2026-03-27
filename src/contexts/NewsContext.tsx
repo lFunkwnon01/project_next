@@ -43,6 +43,23 @@ const INITIAL_ARTICLES: NewsArticle[] = [
       'https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
     author: 'REDACCIÓN BPCC',
   },
+  {
+    id: 'cuidado-rin',
+    category: 'Economía',
+    title: 'El cuidado de las RIN: Como politica de estado para la estabilidad monetaria del Peru',
+    excerpt: 'Las Reservas Internacionales Netas (RIN) constituyen la primera línea de defensa de nuestra economía ante choques externos. Su gestión prudente ha permitido que el sol peruano sea una de las monedas más estables de la región durante las últimas décadas.',
+    time: '26 DE ABRIL',
+    date: '26 DE ABRIL',
+    image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    author: 'JAVIER GONZALEZ',
+    content: `
+      <p>Las Reservas Internacionales Netas (RIN) constituyen la primera línea de defensa de nuestra economía ante choques externos. Su gestión prudente ha permitido que el sol peruano sea una de las monedas más estables de la región durante las últimas décadas.</p>
+      <p>En un contexto de incertidumbre global, mantener un nivel adecuado de reservas no solo brinda confianza a los inversionistas, sino que también otorga al Banco Central de Reserva (BCRP) las herramientas necesarias para mitigar la volatilidad excesiva en el tipo de cambio.</p>
+      <h3>La Estabilidad como Pilar</h3>
+      <p>La política de acumulación de reservas ha sido un componente clave del marco macroeconómico del país. Esto ha permitido absorber choques sin comprometer la estabilidad de precios, protegiendo así el poder adquisitivo de los ciudadanos.</p>
+      <p>Mirando hacia el futuro, el fortalecimiento de estas reservas debe seguir siendo una prioridad nacional, independiente de los ciclos políticos, para garantizar un crecimiento sostenible y predecible para el Perú.</p>
+    `,
+  },
 ];
 
 interface NewsContextType {
