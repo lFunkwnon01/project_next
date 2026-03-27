@@ -101,22 +101,40 @@ export default function NoticiasView() {
       {/* ── 2. CABECERA SECUNDARIA BLANCA ── */}
       <header className={`pt-16 md:pt-20 bg-white transition-all duration-500 ${isScrolled ? 'opacity-0 -translate-y-6 pointer-events-none' : 'opacity-100 translate-y-0'}`}>
         <div className="max-w-[1000px] mx-auto px-6 py-4">
-          <div className="flex justify-between items-center text-[9px] font-sans font-bold tracking-widest uppercase text-gray-400 mb-4">
+          <div className="flex justify-between items-center text-[9px] font-sans font-bold tracking-widest uppercase mb-4"
+            style={{ color: 'rgba(79, 74, 74, 1)' }}>
             <div className="flex gap-6">
               <div className="flex items-center gap-2">
-                <span>GBP/PEN</span>
-                <span className="text-gray-950">4.75 <span className="text-green-600">0.12%</span></span>
+                <span style={{ fontSize: '10px' }}>GBP/PEN</span>
+                <span style={{ color: 'rgb(10, 10, 10)', fontSize: '10px' }}>
+                  4.75 <span style={{ color: 'rgb(22, 163, 74)', fontSize: '10px' }}>0.12%</span>
+                </span>
               </div>
               <div className="flex items-center gap-2">
-                <span>USD/PEN</span>
-                <span className="text-gray-950">3.78</span>
+                <span style={{ fontSize: '10px' }}>USD/PEN</span>
+                <span style={{ color: 'rgb(10, 10, 10)', fontSize: '10px' }}>3.78</span>
               </div>
             </div>
-            <span className="font-news-source font-medium capitalize">{today}</span>
+            <span
+              className="font-news-source font-medium capitalize"
+              style={{
+                fontSize: '11px',
+                letterSpacing: '0.06em',
+                color: 'rgba(79, 74, 74, 1)'
+              }}
+            >
+              {today}
+            </span>
           </div>
           <nav className="flex flex-wrap justify-between items-center gap-y-2 pt-3">
             {categories.map(cat => (
-              <button key={cat} className="text-[8px] font-bold font-inter text-gray-950 hover:text-accent transition-all tracking-[0.2em] uppercase border-b-2 border-transparent hover:border-accent pb-1">
+              <button
+                key={cat}
+                className="text-[10px] font-inter font-bold transition-all tracking-[0.06em] uppercase border-b-2 border-transparent pb-1"
+                style={{ color: 'rgb(10, 10, 10)' }}
+                onMouseEnter={e => e.currentTarget.style.color = 'rgb(220, 38, 38)'}
+                onMouseLeave={e => e.currentTarget.style.color = 'rgb(10, 10, 10)'}
+              >
                 {cat}
               </button>
             ))}
@@ -522,20 +540,133 @@ export default function NoticiasView() {
 
 
       {/* ── FOOTER ── */}
-      <footer className="bg-black text-white py-12 px-6 border-t border-white/5">
-        <div className="max-w-[1200px] mx-auto flex flex-col items-center">
-          <div className="w-full flex flex-col md:flex-row items-center justify-between gap-8 mb-10 border-b border-white/10 pb-8">
-            <img src="/assets/logotipo_original.jpeg" alt="BPCC Footer" className="h-12 md:h-14 w-auto object-contain brightness-0 invert" />
-            <div className="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-3 text-[9px] font-sans font-black tracking-[0.2em] uppercase text-white/70">
-              {categories.map(cat => (
-                <Link key={cat} href="/noticias" className="hover:text-accent transition-colors border-b border-transparent hover:border-accent pb-1">{cat}</Link>
-              ))}
+      <footer className="bg-[#1a1a1a] text-white border-t border-white/10">
+
+        {/* ── FILA 1: LOGO + NAV ── */}
+        <div className="max-w-[1200px] mx-auto px-[24px] py-[32px] flex flex-col md:flex-row items-center justify-between gap-[24px] border-b border-white/10">
+
+          {/* Logo */}
+          <img
+            src="/assets/logotipo_original.jpeg"
+            alt="BPCC Footer"
+            className="h-[60px] w-auto object-contain"
+          />
+
+          {/* Nav links */}
+          <div className="flex flex-wrap justify-center md:justify-end gap-x-[40px] gap-y-[12px]">
+            {["NOSOTROS", "INVESTIGACION", "SERVICIOS", "NOTICIAS", "EVENTOS"].map(item => (
+              <Link
+                key={item}
+                href="/"
+                className="text-[11px] font-inter font-semibold tracking-[0.12em] uppercase text-white/80 hover:text-white transition-colors"
+              >
+                {item}
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* ── FILA 2: PARTNERS + CONTACTO + DIRECCIÓN + HORARIOS + RRSS ── */}
+        <div className="max-w-[1200px] mx-auto px-[24px] py-[40px] flex flex-col md:flex-row items-start justify-between gap-[40px] border-b border-white/10">
+
+          {/* Partners */}
+          <div className="flex flex-col gap-[16px]">
+            <span className="text-[10px] font-inter font-bold text-white/50 uppercase tracking-[0.15em]">
+              In partnership:
+            </span>
+            <div className="flex items-center gap-[24px]">
+              <img
+                src="/assets/british_embassy.png"
+                alt="British Embassy"
+                className="h-[50px] w-auto object-contain brightness-0 invert opacity-80"
+              />
+              <img
+                src="/assets/british_council.png"
+                alt="British Council"
+                className="h-[40px] w-auto object-contain brightness-0 invert opacity-80"
+              />
             </div>
           </div>
-          <p className="text-[9px] text-white/20 font-bold uppercase tracking-[0.4em] text-center leading-relaxed">
-            Copyright 2026 Camara de Comercio Peruano Britanica. Todos los derechos reservados.
-          </p>
+
+          {/* Contacto */}
+          <div className="flex flex-col gap-[10px]">
+            <span className="text-[11px] font-inter font-bold text-white/90 uppercase tracking-[0.1em]">
+              Contacto
+            </span>
+            <p className="text-[12px] font-inter text-white/60">+51 999 999 999</p>
+            <p className="text-[12px] font-inter text-white/60">bpcc@bpcc.org.pe</p>
+          </div>
+
+          {/* Dirección */}
+          <div className="flex flex-col gap-[10px]">
+            <span className="text-[11px] font-inter font-bold text-white/90 uppercase tracking-[0.1em]">
+              Dirección
+            </span>
+            <p className="text-[12px] font-inter text-white/60 leading-[1.8]">
+              Torre Parque Mar<br />
+              Av. José Larco 1301<br />
+              Miraflores 15074<br />
+              Perú
+            </p>
+          </div>
+
+          {/* Horarios */}
+          <div className="flex flex-col gap-[10px]">
+            <span className="text-[11px] font-inter font-bold text-white/90 uppercase tracking-[0.1em]">
+              Horarios
+            </span>
+            <p className="text-[12px] font-inter text-white/60 leading-[1.8]">
+              Lunes a Viernes<br />
+              9am - 5pm<br />
+              (Lima, GMT-5)
+            </p>
+          </div>
+
+          {/* Redes Sociales */}
+          <div className="flex items-center gap-[20px] mt-[4px]">
+            {/* Facebook */}
+            <a href="/" className="text-white/60 hover:text-white transition-colors">
+              <svg className="w-[28px] h-[28px]" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+              </svg>
+            </a>
+            {/* Instagram */}
+            <a href="/" className="text-white/60 hover:text-white transition-colors">
+              <svg className="w-[28px] h-[28px]" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
+              </svg>
+            </a>
+            {/* LinkedIn */}
+            <a href="/" className="text-white/60 hover:text-white transition-colors">
+              <svg className="w-[28px] h-[28px]" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
+            </a>
+          </div>
+
         </div>
+
+        {/* ── FILA 3: COPYRIGHT + LINKS ── */}
+        <div className="max-w-[1200px] mx-auto px-[24px] py-[20px] flex flex-col md:flex-row items-center justify-between gap-[12px]">
+          <p className="text-[10px] font-inter text-white/30 tracking-[0.08em]">
+            © 2026 British Peruvian Chamber of Commerce
+          </p>
+          <div className="flex gap-[24px]">
+            {["Privacidad", "Terminos", "Cookies"].map(item => (
+              <Link
+                key={item}
+                href="/"
+                className="text-[10px] font-inter text-white/30 hover:text-white/60 transition-colors"
+              >
+                {item}
+              </Link>
+            ))}
+          </div>
+        </div>
+
       </footer>
     </div>
   );
