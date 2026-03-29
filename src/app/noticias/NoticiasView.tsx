@@ -547,9 +547,9 @@ export default function NoticiasView() {
 
           {/* Logo */}
           <img
-            src="/assets/logotipo_original.jpeg"
+            src="/assets/logotipo_white.png"
             alt="BPCC Footer"
-            className="h-[60px] w-auto object-contain"
+            className="h-[60px] w-[200px]  object-contain"
           />
 
           {/* Nav links */}
@@ -581,9 +581,9 @@ export default function NoticiasView() {
                 className="h-[50px] w-auto object-contain brightness-0 invert opacity-80"
               />
               <img
-                src="/assets/british_council.png"
+                src="/assets/Council.png"
                 alt="British Council"
-                className="h-[40px] w-auto object-contain brightness-0 invert opacity-80"
+                className="h-[40px] w-[100px] md:h-[60px] md:w-[150px] object-contain brightness-0 invert opacity-100"
               />
             </div>
           </div>
