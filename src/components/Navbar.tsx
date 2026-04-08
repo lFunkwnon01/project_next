@@ -19,10 +19,10 @@ const NAV_DATA: NavItem[] = [
     href: '/nosotros',
     description: '37 años fortaleciendo la relación empresarial entre Perú y Reino Unido.',
     subItems: [
-      { name: 'Britcham en Peru', href: '/nosotros/rol' },
-      { name: 'Historia', href: '/nosotros/historia' },
-      { name: 'Directorio', href: '/nosotros/directorio', featured: true },
+      { name: 'Nuestro Rol', href: '/nosotros', featured: true },
+      { name: 'Directorio', href: '/nosotros/directorio' },
       { name: 'Equipo', href: '/nosotros/equipo' },
+      { name: 'Impacto', href: '/nosotros/impacto' },
     ]
   },
   {
@@ -31,8 +31,8 @@ const NAV_DATA: NavItem[] = [
     description: 'Información estratégica y análisis económico para la toma de decisiones.',
     subItems: [
       { name: 'Economic Report', href: '/investigacion' },
-      { name: 'Opportunities', href: '/investigacion' },
-      { name: 'Bilateral', href: '/investigacion' },
+      { name: 'Opportunities', href: '/investigacion/opportunities' },
+      { name: 'Bilateral', href: '/investigacion/relaciones-bilaterales' },
     ]
   },
   {
@@ -89,8 +89,8 @@ const Navbar: React.FC = () => {
 
   const isBackgroundActive = isScrolled || hoveredItem || isHeaderOpen;
 
-  const logoColor = isBackgroundActive ? 'white' : 'white';
-  const textColor = isBackgroundActive ? 'text-white' : 'text-white';
+  const logoColor = 'white';
+  const textColor = 'text-white';
   const bgColor = isBackgroundActive ? '' : 'bg-transparent';
 
   const gradientStyle = isBackgroundActive
@@ -109,16 +109,20 @@ const Navbar: React.FC = () => {
       <div className={`max-w-[1440px] mx-auto px-6 md:px-12 flex items-center justify-between transition-all duration-500 ease-in-out ${isHeaderOpen ? 'max-h-0 opacity-0 pointer-events-none' : 'h-20 lg:h-24 opacity-100 overflow-visible'}`}>
 
         {/* LOGO */}
-        <Link href="/" className="flex items-center gap-3 z-50 transition-opacity duration-300">
-          <div className="flex items-center gap-3">
-            <svg className="w-10 h-10 lg:w-12 lg:h-12" fill={logoColor} viewBox="0 0 48 48">
-              <path d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z" />
-            </svg>
-            <div className="flex flex-col leading-none">
-              <span className={`font-serif text-xl lg:text-2xl font-bold tracking-tight ${textColor}`}>BritCham</span>
-              <span className={`text-[8px] lg:text-[9px] font-bold uppercase tracking-widest pl-0.5 ${isBackgroundActive ? 'text-white/80' : 'text-white/70'}`}>Peru</span>
-            </div>
-          </div>
+        <Link href="/" className="flex items-center z-50 transition-opacity duration-300">
+          <Image
+            src="/assets/logotipo_white.png"
+            alt="Cámara de Comercio Peruano Británica | BritCham Peru"
+            width={240}  // 🎛️ AJUSTA EL ANCHO AQUÍ (en px)
+            height={60}  // 🎛️ AJUSTA EL ALTO AQUÍ (en px)
+            className="object-contain"
+            style={{ 
+              width: '240px',   // 🎛️ CONTROL MANUAL DE ANCHO
+              height: 'auto',    // Mantiene la proporción
+              display: 'block'
+            }}
+            priority
+          />
         </Link>
 
         {/* DESKTOP NAV */}
@@ -199,16 +203,13 @@ const Navbar: React.FC = () => {
           {/* COL 1: LOGO */}
           <div className="col-span-1">
             <Image
-              src="/assets/isotopo.png"
+              src="/assets/logotipo_white.png"
               alt="BritCham Logo"
-              width={100}
-              height={100}
-              className="brightness-0 invert opacity-90 scale-110 origin-left"
+              width={460} // Puedes cambiar este valor en píxeles
+              height={460} // Puedes cambiar este valor en píxeles
+              className="brightness-0 invert opacity-100 scale-130 origin-left"
             />
-            <p className="text-[10px] mt-4 opacity-70 leading-relaxed max-w-[200px]">
-              CÁMARA DE COMERCIO PERUANO BRITÁNICA<br />
-              best network for business & community
-            </p>
+
           </div>
 
           {/* COL 2: CONTACTO */}

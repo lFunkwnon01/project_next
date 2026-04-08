@@ -4,17 +4,62 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useNews } from '@/contexts/NewsContext';
 import type { NewsArticle } from '@/types';
+import { newsService } from '@/lib/cdn';
 
 export default function NoticiasView() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [cdnNews, setCdnNews] = useState<NewsArticle[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
   const { newsQueue, addArticle } = useNews();
 
   const categories = ['ENERGÍA', 'MINERÍA', 'SALUD', 'AGROINDUSTRIA', 'COMERCIO INTERNACIONAL', 'ECONOMÍA', 'INFRAESTRUCTURA', 'SOCIAL'];
   const today = new Date().toLocaleDateString('es-PE', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
 
+  // FALLBACK MOCK DATA
+  const MOCK_FALLBACK: NewsArticle[] = [
+    { id: "static-1", category: "Infraestructura", title: "Nuevo ingreso de inversiones al sector", date: "26 DE ABRIL", time: "26 DE ABRIL", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et." },
+    { id: "static-2", category: "Minería", title: "Record de exportaciones de cobre en el 2025", date: "27 DE ENERO", time: "27 DE ENERO", image: "https://images.unsplash.com/photo-1579489225078-27977a77bf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et." },
+    { id: "static-3", category: "Agroindustria", title: "El Reino Unido como partner agroindustrial", date: "26 DE ABRIL", time: "26 DE ABRIL", image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et." },
+    { id: "static-4", category: "Opinion & Analisis", title: "Convenio Peru - Reino Unido: Doble Tributacion", date: "HACE 10 HORAS", time: "HACE 10 HORAS", image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et." },
+    { id: "static-5", category: "Energia", title: "Apertura de nueva solar en Arequipa", date: "26 DE ABRIL", time: "26 DE ABRIL", image: "https://images.unsplash.com/photo-1509391366360-feaffa6021fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et." }
+  ];
+
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 80);
     window.addEventListener('scroll', handleScroll);
+
+    const fetchNews = async () => {
+      try {
+        setIsLoading(true);
+        const response = await newsService.getPage(1);
+
+        // Map CDN items to NewsArticle interface
+        const mappedNews: NewsArticle[] = response.items.map(item => ({
+          id: item.id,
+          title: item.title,
+          category: 'INSTITUCIONAL', // Default if not in index
+          excerpt: item.summary,
+          time: item.date,
+          date: item.date,
+          image: item.image ? `/content/media/${item.image.split('/').pop()}` : "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000"
+        }));
+
+        // Note: CDN images are usually relative to /content/media/
+        // If newsService.getImageUrl returns the full path, we use it.
+        // But since we are proxying, /content/media/filename.webp works too.
+
+        setCdnNews(mappedNews.length > 0 ? mappedNews : MOCK_FALLBACK);
+      } catch (err) {
+        console.error("Failed to fetch news from CDN, using mock fallback:", err);
+        setCdnNews(MOCK_FALLBACK);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchNews();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -31,13 +76,10 @@ export default function NoticiasView() {
     addArticle(newArticle);
   };
 
+  // Combine Live CDN Data + Published Queue (Simulated)
   const allNews = [
     ...newsQueue,
-    { id: "static-1", category: "Infraestructura", title: "Nuevo ingreso de inversiones al sector", date: "26 DE ABRIL", time: "26 DE ABRIL", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et." },
-    { id: "static-2", category: "Minería", title: "Record de exportaciones de cobre en el 2025", date: "27 DE ENERO", time: "27 DE ENERO", image: "https://images.unsplash.com/photo-1579489225078-27977a77bf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et." },
-    { id: "static-3", category: "Agroindustria", title: "El Reino Unido como partner agroindustrial", date: "26 DE ABRIL", time: "26 DE ABRIL", image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et." },
-    { id: "static-4", category: "Opinion & Analisis", title: "Convenio Peru - Reino Unido: Doble Tributacion", date: "HACE 10 HORAS", time: "HACE 10 HORAS", image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et." },
-    { id: "static-5", category: "Energia", title: "Apertura de nueva solar en Arequipa", date: "26 DE ABRIL", time: "26 DE ABRIL", image: "https://images.unsplash.com/photo-1509391366360-feaffa6021fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et." }
+    ...cdnNews
   ];
 
   const uniqueNews = Array.from(new Map(allNews.map(item => [item.id, item])).values());
@@ -46,6 +88,7 @@ export default function NoticiasView() {
   const sideNews = uniqueNews.slice(1, 3);
   const recentNews = uniqueNews.slice(3, 8);
 
+  // OPINION & EVENTS (Keep static for now as mock)
   const opinionNews = [
     { author: "JOHN KNIGHT", title: "El cuidado de las RIN: Como politica de estado", date: "26 DE ABRIL" },
     { author: "JAMES ALBRIGHTON", title: "Perspectives of the Peruvian construction industry", date: "9 DE ENERO" },
@@ -59,7 +102,12 @@ export default function NoticiasView() {
     { title: "Coffee and Networking Mineria 2025", date: "26 DE ABRIL", image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" }
   ];
 
-  if (!featuredNews) return null;
+  if (isLoading && cdnNews.length === 0) return (
+    <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#003B91]"></div>
+    </div>
+  );
+
 
   return (
     <div className="bg-white min-h-screen font-sans text-gray-950 selection:bg-accent selection:text-white overflow-x-hidden">
@@ -76,7 +124,13 @@ export default function NoticiasView() {
             </Link>
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-4">
               <div className="w-[50px] md:w-[60px] h-[50px] md:h-[60px] flex items-center justify-center">
-                <img src="/assets/isotopo.png" alt="BPCC" className="w-full h-full object-contain" />
+                <img
+                  src="/assets/isotopo.png"
+                  alt="BPCC"
+                  width={60} // Puedes cambiar este valor en píxeles
+                  height={60} // Puedes cambiar este valor en píxeles
+                  className="w-full h-full object-contain"
+                />
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-[50px] font-libre font-normal tracking-wide text-white leading-none font-style-normal" style={{ fontFamily: "Libre Baskerville, serif", fontWeight: 400 }}>NEWS</h1>
             </div>
@@ -153,7 +207,7 @@ export default function NoticiasView() {
 
             {/* Línea */}
             <div className="flex justify-center mb-12">
-              <div className="w-[952px] max-w-[100%] h-[2px] bg-black opacity-100"></div>
+              <div className="w-[952px] max-w-[100%] h-[1.5px] bg-black opacity-100"></div>
             </div>
 
             {/* CONTENEDOR FLEX */}
@@ -253,7 +307,7 @@ export default function NoticiasView() {
                 <h2 className="text-[16px] font-inter font-bold text-black uppercase tracking-[-0.01em] whitespace-nowrap">
                   NOTICIAS RECIENTES
                 </h2>
-                <div className="h-[2px] flex-1 bg-black" />
+                <div className="h-[1.5px] flex-1 bg-black" />
               </div>
 
               {/* ── FLECHAS ── */}

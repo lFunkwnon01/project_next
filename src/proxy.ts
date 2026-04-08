@@ -4,12 +4,13 @@ import type { NextRequest } from 'next/server';
 export default function proxy(request: NextRequest) {
   // In a real scenario, this might come from an environment variable
   // e.g., const isMaintenanceMode = process.env.MAINTENANCE_MODE === 'true';
-  const isMaintenanceMode = true; // Activating it now for the offline page
+  const isMaintenanceMode = false; // Desactivado para restaurar el Home (Activar en true si se necesita)
 
   // Try to avoid redirecting assets and API requests if they are needed for the maintenance page itself
   const isPublicAsset = request.nextUrl.pathname.startsWith('/assets/') || request.nextUrl.pathname.startsWith('/_next/');
   const isMaintenancePage = request.nextUrl.pathname === '/mantenimiento';
 
+  /* 
   if (isMaintenanceMode && !isPublicAsset && !isMaintenancePage) {
     // We rewrite to the maintenance page
     const url = request.nextUrl.clone();
@@ -24,6 +25,7 @@ export default function proxy(request: NextRequest) {
     response.headers.set('Retry-After', '3600');
     return response;
   }
+  */
 
   return NextResponse.next();
 }

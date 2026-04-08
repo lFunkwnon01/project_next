@@ -61,7 +61,13 @@ export default function NoticiaDetalleView({ id }: { id: string }) {
             </Link>
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-4">
               <div className="w-14 md:w-16 h-14 md:h-16 flex items-center justify-center">
-                <img src="/assets/isotopo.png" alt="BPCC" className="w-full h-full object-contain" />
+                <img 
+                  src="/assets/isotopo.png" 
+                  alt="BPCC" 
+                  width={64} // Puedes cambiar este valor en píxeles
+                  height={64} // Puedes cambiar este valor en píxeles
+                  className="w-full h-full object-contain" 
+                />
               </div>
               <Link href="/noticias" className="hover:text-gray-300 transition-colors">
                 <h1 className="text-3xl md:text-5xl font-serif font-black italic tracking-tighter uppercase leading-none">News</h1>

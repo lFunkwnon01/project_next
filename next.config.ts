@@ -8,12 +8,20 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "ui-avatars.com" },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: "/content/:path*",
+        destination: "https://www.bpcc.org.pe/content/:path*",
+      },
+    ];
+  },
   async redirects() {
     return [
       {
-        source: "/nosotros",
-        destination: "/nosotros/rol",
-        permanent: false,
+        source: "/nosotros/rol",
+        destination: "/nosotros",
+        permanent: true,
       },
       {
         source: "/noticias-eventos",

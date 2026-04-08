@@ -1,44 +1,76 @@
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'BritCham Peru | Oportunidades Estratégicas',
-  description: 'Oportunidades de inversión y crecimiento bilateral Perú-Reino Unido.',
-};
-
-const opportunities = [
-  { title: "Energías Renovables", img: "https://picsum.photos/seed/renew/600/400", desc: "Proyectos eólicos y solares a gran escala." },
-  { title: "Tecnología Minera", img: "https://picsum.photos/seed/mine/600/400", desc: "Innovación y sostenibilidad en el sector extractivo." },
-  { title: "Infraestructura", img: "https://picsum.photos/seed/infra/600/400", desc: "Desarrollo de puertos, carreteras y aeropuertos." },
-  { title: "Educación & EdTech", img: "https://picsum.photos/seed/edtech/600/400", desc: "Colaboración académica y plataformas digitales." },
-  { title: "Agroexportación", img: "https://picsum.photos/seed/agro/600/400", desc: "Potencial de superalimentos en el mercado británico." },
-  { title: "Salud & Life Sciences", img: "https://picsum.photos/seed/health/600/400", desc: "Equipamiento médico y soluciones biotecnológicas." },
-];
+'use client';
 
 export default function OpportunitiesPage() {
   return (
-    <div className="bg-[#0a1a3d] min-h-screen text-white pt-20 pb-24">
-      <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <header className="mb-24 text-center">
-          <span className="text-accent font-bold tracking-[0.3em] text-[10px] uppercase block mb-6">Business Opportunities</span>
-          <h1 className="text-5xl md:text-7xl font-serif font-bold italic drop-shadow-lg mb-8">Oportunidades Estratégicas</h1>
-          <p className="text-gray-300 max-w-2xl mx-auto text-lg md:text-xl font-light leading-relaxed">
-            Descubra nichos de mercado, sectores en crecimiento y proyectos clave que fortalecerán su expansión internacional.
-          </p>
-        </header>
+    <div className="flex flex-col w-full min-h-screen font-sans">
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {opportunities.map((item, i) => (
-            <div key={i} className="group relative rounded-2xl overflow-hidden cursor-pointer h-80 shadow-xl">
-              <img src={item.img} alt={item.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-60 group-hover:opacity-100" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
-              <div className="absolute bottom-0 left-0 p-8 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                <h3 className="text-2xl font-bold font-serif mb-2">{item.title}</h3>
-                <p className="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">{item.desc}</p>
+      {/* 1. HERO SECTION */}
+      <section className="w-full bg-[#1b1b1b] pt-28 lg:pt-36 pb-20 px-8 md:px-16 lg:px-24 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+
+        {/* Left Content */}
+        <div className="w-full lg:w-1/2 flex flex-col text-white">
+          <h1 className="text-4xl md:text-5xl lg:text-[54px] font-bold mb-6">
+            Revista Opportunities
+          </h1>
+          <p className="text-white/80 text-lg leading-relaxed mb-8 max-w-[90%]">
+            Perspectivas, iniciativas y experiencias de los distintos actores que forman parte de esta comunidad empresarial, destacando temas clave para el fortalecimiento del vínculo bilateral.
+          </p>
+
+          <div className="w-48 h-12 bg-[#c4c4c4] rounded-sm mb-12 cursor-pointer hover:bg-white transition-colors duration-300"></div>
+
+          <div className="flex flex-wrap items-center gap-6 md:gap-8 text-white/70 text-sm font-medium">
+            <span>Edicion: No. 100</span>
+            <span>Fecha de Publicacion: 20 de Abril 2026</span>
+          </div>
+        </div>
+
+        {/* Right Content / Cover Image */}
+        <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
+          <div className="relative w-full max-w-[450px] aspect-[3/4] shadow-2xl transition-transform hover:scale-[1.02] duration-300">
+            <img
+              src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              alt="Opportunities Magazine Cover"
+              className="w-full h-full object-cover rounded-sm"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* 2. EDICIONES PASADAS */}
+      <section className="w-full bg-[#f4f4f4] py-20 px-8 md:px-16 lg:px-24">
+
+        {/* Header with line */}
+        <div className="flex items-center gap-6 mb-16">
+          <h2 className="text-3xl font-bold text-[#444] whitespace-nowrap">
+            Ediciones pasadas
+          </h2>
+          <div className="h-[2px] flex-grow bg-[#d1d5db]"></div>
+        </div>
+
+        {/* Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {[99, 98, 97, 96].map((edicion) => (
+            <div key={edicion} className="flex flex-col group cursor-pointer">
+              {/* Image Placeholder */}
+              <div className="w-full aspect-[3/4] bg-[#e0e0e0] mb-6 relative overflow-hidden rounded-sm transition-all duration-300 group-hover:shadow-lg">
+                <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </div>
+
+              {/* Info */}
+              <div className="text-center">
+                <h3 className="text-lg font-bold text-[#444] leading-tight mb-2">
+                  Opportunities<br />
+                  Innovation & Sustainability
+                </h3>
+                <p className="text-[#666] text-sm">
+                  Edición no. {edicion}
+                </p>
               </div>
             </div>
           ))}
         </div>
-      </div>
+
+      </section>
     </div>
   );
 }
