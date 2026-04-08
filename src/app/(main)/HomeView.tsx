@@ -90,7 +90,7 @@ export default function HomeView() {
       <section className="relative w-full h-[90vh] min-h-[600px] overflow-hidden bg-brand-dark">
         {/* Stable H1 for SEO (visually hidden but present for crawlers) */}
         <h1 className="sr-only">Cámara de Comercio Peruano Británica | BritCham Peru</h1>
-        
+
         {HERO_SLIDES.map((slide, index) => (
           <div
             key={index}
@@ -152,7 +152,7 @@ export default function HomeView() {
         <div className="absolute inset-0 bg-dots opacity-50 pointer-events-none" />
         <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center gap-16">
           <h2 className="text-white font-inter text-4xl font-bold whitespace-nowrap shrink-0">
-            Eventos y Conferencias Perú-UK
+            Próximos Eventos
           </h2>
           {/* ... ticker content ... */}
           <div className="w-full relative overflow-hidden">
