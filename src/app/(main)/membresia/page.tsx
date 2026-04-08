@@ -1,11 +1,7 @@
-import type { Metadata } from 'next';
-import MembresiaView from './MembresiaView';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'BritCham Peru | Membresías',
-  description: 'Únase a la red empresarial más influyente entre Perú y el Reino Unido.',
-};
+import ConstructionView from '@/components/ConstructionView';
 
 export default function MembershipPage() {
-  return <MembresiaView />;
+  return <ConstructionView title="Membresía" />;
 }

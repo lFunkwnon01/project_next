@@ -4,11 +4,12 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useNews } from '@/contexts/NewsContext';
 import type { NewsArticle } from '@/types';
-import { newsService } from '@/lib/cdn';
+import { newsService, articlesService } from '@/lib/cdn';
 
 export default function NoticiasView() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [cdnNews, setCdnNews] = useState<NewsArticle[]>([]);
+  const [cdnArticles, setCdnArticles] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -30,36 +31,43 @@ export default function NoticiasView() {
     const handleScroll = () => setIsScrolled(window.scrollY > 80);
     window.addEventListener('scroll', handleScroll);
 
-    const fetchNews = async () => {
+    const fetchData = async () => {
       try {
         setIsLoading(true);
-        const response = await newsService.getPage(1);
-
-        // Map CDN items to NewsArticle interface
-        const mappedNews: NewsArticle[] = response.items.map(item => ({
+        
+        // Fetch News (for sections 1 & 2)
+        const newsResponse = await newsService.getPage(1);
+        const mappedNews: NewsArticle[] = newsResponse.items.map(item => ({
           id: item.id,
           title: item.title,
-          category: 'INSTITUCIONAL', // Default if not in index
+          category: item.category || 'INSTITUCIONAL',
           excerpt: item.summary,
           time: item.date,
           date: item.date,
-          image: item.image ? `/content/media/${item.image.split('/').pop()}` : "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000"
+          image: item.cover || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000"
         }));
 
-        // Note: CDN images are usually relative to /content/media/
-        // If newsService.getImageUrl returns the full path, we use it.
-        // But since we are proxying, /content/media/filename.webp works too.
+        // Fetch Articles (for section 3: Opinion & Analysis)
+        const articlesResponse = await articlesService.getPage(1);
+        const mappedArticles = articlesResponse.items.map(item => ({
+          id: item.id,
+          title: item.title,
+          author: "BPCC", // Default author if not in index
+          date: item.date,
+          // We can add more fields if needed
+        }));
 
         setCdnNews(mappedNews.length > 0 ? mappedNews : MOCK_FALLBACK);
+        setCdnArticles(mappedArticles);
       } catch (err) {
-        console.error("Failed to fetch news from CDN, using mock fallback:", err);
+        console.error("Failed to fetch data from CDN, using mock fallback:", err);
         setCdnNews(MOCK_FALLBACK);
       } finally {
         setIsLoading(false);
       }
     };
 
-    fetchNews();
+    fetchData();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -86,10 +94,14 @@ export default function NoticiasView() {
 
   const featuredNews = uniqueNews[0];
   const sideNews = uniqueNews.slice(1, 3);
-  const recentNews = uniqueNews.slice(3, 8);
+  const recentNews = uniqueNews.slice(3, 10); // Now shows 7 items if available (total 10)
 
-  // OPINION & EVENTS (Keep static for now as mock)
-  const opinionNews = [
+  // OPINION & ARTICLES (From CDN)
+  const opinionNews = cdnArticles.length > 0 ? cdnArticles.slice(0, 3).map(art => ({
+    author: art.author,
+    title: art.title,
+    date: new Date(art.date).toLocaleDateString('es-PE', { day: 'numeric', month: 'long' }).toUpperCase()
+  })) : [
     { author: "JOHN KNIGHT", title: "El cuidado de las RIN: Como politica de estado", date: "26 DE ABRIL" },
     { author: "JAMES ALBRIGHTON", title: "Perspectives of the Peruvian construction industry", date: "9 DE ENERO" },
     { author: "IGNACIO PALACIOS", title: "Que significa un CTTP para el Peru", date: "15 DE FEBRERO" }

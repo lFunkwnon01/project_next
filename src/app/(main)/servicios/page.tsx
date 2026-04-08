@@ -1,11 +1,8 @@
-import type { Metadata } from 'next';
-import ServiciosView from './ServiciosView';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'BritCham Peru | Servicios',
-  description: 'Desbloqueamos el potencial de su negocio mediante servicios de consultoria estrategica y eventos de alto perfil',
-};
+import ConstructionView from '@/components/ConstructionView';
 
 export default function ServiciosPage() {
-  return <ServiciosView />;
+  return <ConstructionView title="Servicios" />;
 }
+

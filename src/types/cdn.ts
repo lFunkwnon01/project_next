@@ -21,7 +21,8 @@ export interface CDNNewsItem {
     title: string;
     date: string;
     summary: string;
-    image: string | null;
+    category: string;
+    cover: string | null;
 }
 
 export interface CDNNewsDetail {
@@ -37,7 +38,8 @@ export interface CDNArticleItem {
     title: string;
     date: string;
     summary: string;
-    image: string;
+    category: string;
+    cover: string | null;
 }
 
 export interface CDNArticleDetail {

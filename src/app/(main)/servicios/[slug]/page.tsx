@@ -1,6 +1,7 @@
 'use client';
 
 import { useParams } from 'next/navigation';
+import ConstructionView from '@/components/ConstructionView';
 
 const serviceDetails: Record<string, { title: string; subtitle: string; description: string; items: { title: string; desc: string }[]; img1: string; img2: string }> = {
   'estudio-de-mercado': {
@@ -88,56 +89,7 @@ export default function ServicioDetailPage() {
     );
   }
 
-  return (
-    <div className="py-20 min-h-screen bg-secondary">
-      <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <div className="space-y-16">
-          {/* Hero Header */}
-          <div className="bg-white rounded-3xl p-12 md:p-16 lg:p-24 shadow-2xl flex flex-col lg:flex-row items-center gap-16 border border-gray-100">
-            <div className="w-full lg:w-1/2 space-y-8">
-              <span className="text-accent font-bold text-[10px] uppercase tracking-widest border-l-4 border-accent pl-4">Soluciones Corporativas</span>
-              <h2 className="text-5xl md:text-6xl font-serif font-bold text-primary italic leading-tight">{detail.title}</h2>
-              <p className="text-xl text-gray-500 font-light leading-relaxed">{detail.subtitle}</p>
-              <button className="bg-primary text-white px-10 py-5 rounded-sm font-bold text-xs tracking-widest uppercase shadow-xl hover:brightness-110 transition-all">Solicitar Presupuesto</button>
-            </div>
-            <div className="w-full lg:w-1/2 aspect-[3/4] rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-              <img src={detail.img1} alt={detail.title} className="w-full h-full object-cover" />
-            </div>
-          </div>
-
-          {/* Secondary Content */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center bg-secondary/50 p-12 lg:p-20 rounded-3xl">
-            <div className="space-y-8 order-2 md:order-1">
-              <h3 className="text-3xl font-serif font-bold text-primary">Nuestra Metodología</h3>
-              <p className="text-gray-600 leading-relaxed text-lg">{detail.description}</p>
-              <div className="space-y-6 pt-4">
-                {detail.items.map((item, idx) => (
-                  <div key={idx} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                    <h4 className="font-bold text-primary mb-2 flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-accent"></span>{item.title}
-                    </h4>
-                    <p className="text-sm text-gray-500 pl-4 border-l-2 border-gray-100">{item.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="order-1 md:order-2 aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
-              <img src={detail.img2} alt="Metodología" className="w-full h-full object-cover" />
-            </div>
-          </div>
-        </div>
-
-        <section className="mt-24 text-center space-y-6 bg-white p-12 rounded-3xl border border-gray-200">
-          <h2 className="text-3xl font-serif font-bold text-primary italic">¿Necesita una solución personalizada?</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Nuestro equipo de desarrollo empresarial está listo para diseñar servicios a medida.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <button className="bg-accent text-white px-10 py-4 rounded-sm font-bold text-xs tracking-widest uppercase shadow-xl hover:brightness-110 transition-all">Agendar Reunión</button>
-            <button className="bg-white border-2 border-primary text-primary px-10 py-4 rounded-sm font-bold text-xs tracking-widest uppercase hover:bg-primary hover:text-white transition-all">Contactar Equipo</button>
-          </div>
-        </section>
-      </div>
-    </div>
-  );
+  // Se muestra la página de construcción para todos los servicios por solicitud
+  return <ConstructionView title={detail.title} />;
 }
+

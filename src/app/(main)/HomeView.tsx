@@ -186,26 +186,55 @@ export default function HomeView() {
       {/* 3. BRITCHAM EN PERÚ */}
       <section className="bg-[#232323] h-[430px] overflow-hidden flex items-center relative">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 w-full h-full flex flex-col lg:flex-row items-center justify-between">
+          {/* LEFT COLUMN: solo aquí controlamos el texto */}
           <div className="flex flex-col h-full justify-center pt-8 pb-12 lg:w-1/2 relative z-10">
-            <h2 className="text-white font-inter text-3xl font-bold mb-8">
-              Britcham Peru: 37 Años de Trayectoria
-            </h2>
-            <div className="flex gap-8 items-start">
-              <div className="w-[3px] h-32 bg-white/40 shrink-0 mt-2" />
-              <div className="max-w-xl">
-                <p className="text-white text-3xl md:text-4xl lg:text-4xl font-libre font-bold leading-[1.2]">
-                  <span className="font-libre font-bold text-5xl md:text-6xl mr-2">37</span>
-                  años impulsando el comercio institucional entre el Perú y el Reino Unido.
-                </p>
+
+            {/* ==== MOVIMIENTO GENERAL DEL TEXTO =====
+          Cambia los valores en transform: `translate( Xpx, Ypx )`
+          - X positivo => mueve a la derecha
+          - Y positivo => mueve hacia abajo
+      */}
+            <div
+              className="relative"
+              style={{ transform: 'translate(0px, 0px)' }} // <<--- EDITA AQUÍ para mover TODO el bloque (título + línea + párrafo)
+            >
+              <h2 className="text-white font-inter text-3xl font-bold mb-8">
+                Britcham Peru: 37 Años de Trayectoria
+              </h2>
+
+              <div className="flex gap-8 items-start">
+                {/* ===== LÍNEA VERTICAL (mover individualmente) =====
+              Cambia translate en la línea si quieres desplazarla sola.
+          */}
+                <div
+                  className="w-[3px] h-32 bg-white/100 shrink-0 mt-2"
+                  style={{ transform: 'translate(0px, 0px)' }} // <<--- EDITA AQUÍ para mover solo la línea (Xpx, Ypx)
+                />
+
+                {/* ===== BLOQUE DE TEXTO GRANDE (mover individualmente) =====
+              Cambia translate aquí si quieres mover solo este bloque.
+          */}
+                <div
+                  className="max-w-xl"
+                  style={{ transform: 'translate(0px, 0px)' }} // <<--- EDITA AQUÍ para mover solo el párrafo grande (Xpx, Ypx)
+                >
+                  <p className="text-white text-3xl md:text-4xl lg:text-4xl font-libre font-bold leading-[1.2]">
+                    <span className="font-libre font-bold text-[45px] md:text-[40px] mr-2">37</span>
+                    años impulsando el comercio institucional entre el Perú y el Reino Unido.
+                  </p>
+                </div>
+              </div>
+
+              {/* ... pagination dots ... */}
+              <div className="flex gap-2 mt-auto pb-4 translate-y-10">
+                <div className="w-2 h-2 rounded-full bg-white" />
+                <div className="w-2 h-2 rounded-full bg-white/40" />
+                <div className="w-2 h-2 rounded-full bg-white/40" />
               </div>
             </div>
-            {/* ... pagination dots ... */}
-            <div className="flex gap-2 mt-auto pb-4">
-              <div className="w-2 h-2 rounded-full bg-white" />
-              <div className="w-2 h-2 rounded-full bg-white/40" />
-              <div className="w-2 h-2 rounded-full bg-white/40" />
-            </div>
           </div>
+
+          {/* Imagen a la derecha (sin cambios, idéntico a tu original) */}
           <div className="lg:absolute lg:right-0 lg:top-0 lg:h-full lg:w-[55%] flex items-center justify-end">
             <img
               src="/assets/mundo.png"
@@ -221,11 +250,11 @@ export default function HomeView() {
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <div className="text-center mb-20">
             <h2 className="text-[#555555] font-inter text-4xl md:text-5xl font-bold mb-4">
-              Socios Corporativos y Alianzas
+              Socios Corporativos
             </h2>
           </div>
           {/* ... logos ... */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-center">
             {[
               { src: '/assets/gca_logo.png', alt: 'GCA - Socio de Britcham', height: 100 },
               { src: '/assets/anglo_americano.png', alt: 'Anglo American - Socio Corporativo', height: 80 },

@@ -14,19 +14,19 @@ const TIMELINE_DATA = [
 ];
 
 const BOARD_MEMBERS = [
-  { name: 'Enrique Anderson', role: 'Presidente', img: 'https://ui-avatars.com/api/?name=Enrique+Anderson&background=0D8ABC&color=fff' },
-  { name: 'Felipe Morris', role: 'Vicepresidente', img: 'https://ui-avatars.com/api/?name=Felipe+Morris&background=0D8ABC&color=fff' },
-  { name: 'Rafael Ramos', role: 'Director', img: 'https://ui-avatars.com/api/?name=Rafael+Ramos&background=0D8ABC&color=fff' },
-  { name: 'Alex Fort', role: 'Director', img: 'https://ui-avatars.com/api/?name=Alex+Fort&background=0D8ABC&color=fff' },
-  { name: 'Inés Temple', role: 'Directora', img: 'https://ui-avatars.com/api/?name=Ines+Temple&background=0D8ABC&color=fff' },
-  { name: 'Juan Carlos Mathews', role: 'Director', img: 'https://ui-avatars.com/api/?name=Juan+Carlos&background=0D8ABC&color=fff' },
+  { name: 'ejemplo_1', role: 'Presidente', img: 'https://ui-avatars.com/api/?name=Enrique+Anderson&background=0D8ABC&color=fff' },
+  { name: 'ejemplo_2', role: 'Vicepresidente', img: 'https://ui-avatars.com/api/?name=Felipe+Morris&background=0D8ABC&color=fff' },
+  { name: 'ejemplo_3', role: 'Director', img: 'https://ui-avatars.com/api/?name=Rafael+Ramos&background=0D8ABC&color=fff' },
+  { name: 'ejemplo_4', role: 'Director', img: 'https://ui-avatars.com/api/?name=Alex+Fort&background=0D8ABC&color=fff' },
+  { name: 'ejemplo_5', role: 'Directora', img: 'https://ui-avatars.com/api/?name=Ines+Temple&background=0D8ABC&color=fff' },
+  { name: 'ejemplo_6', role: 'Director', img: 'https://ui-avatars.com/api/?name=Juan+Carlos&background=0D8ABC&color=fff' },
 ];
 
 const TEAM_MEMBERS = [
-  { name: 'Fabricio Ladera', role: 'General Manager', img: 'https://ui-avatars.com/api/?name=Fabricio+Ladera&background=e20820&color=fff' },
-  { name: 'Sergio Delgado', role: 'Head of Consulting', img: 'https://ui-avatars.com/api/?name=Sergio+Delgado&background=e20820&color=fff' },
-  { name: 'Angel Toshio', role: 'Head of Events', img: 'https://ui-avatars.com/api/?name=Angel+Toshio&background=e20820&color=fff' },
-  { name: 'Valeria Rivas', role: 'Marketing & Comms', img: 'https://ui-avatars.com/api/?name=Valeria+Rivas&background=e20820&color=fff' },
+  { name: 'ejemplo_1', role: 'General Manager', img: 'https://ui-avatars.com/api/?name=Fabricio+Ladera&background=e20820&color=fff' },
+  { name: 'ejemplo_2', role: 'Head of Consulting', img: 'https://ui-avatars.com/api/?name=Sergio+Delgado&background=e20820&color=fff' },
+  { name: 'ejemplo_3', role: 'Head of Events', img: 'https://ui-avatars.com/api/?name=Angel+Toshio&background=e20820&color=fff' },
+  { name: 'ejemplo_4', role: 'Marketing & Comms', img: 'https://ui-avatars.com/api/?name=Valeria+Rivas&background=e20820&color=fff' },
 ];
 
 const milestoneImages = [
