@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "picsum.photos" },
       { protocol: "https", hostname: "ui-avatars.com" },
       { protocol: "https", hostname: "www.bpcc.org.pe" },
+      { protocol: "https", hostname: "admin.bpcc.org.pe" },
     ],
   },
   async rewrites() {
