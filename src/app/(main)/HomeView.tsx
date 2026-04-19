@@ -53,91 +53,66 @@ const FAQ_ITEMS = [
 ];
 
 /* =========================================================
-   2) SECTION_STYLES — TODO con clamp()
-   =========================================================
-   REGLA GENERAL:
-   clamp(MIN, FLUIDO, MAX)
-     MIN  = valor en móvil pequeño (~390px)
-     vw   = crece proporcionalmente con la pantalla
-     MAX  = valor en tu monitor 1920px
-
-   Para ajustar en 1920px → solo cambia el TERCER valor.
-   Para ajustar en móvil  → solo cambia el PRIMER valor.
-   El del medio (vw) se ajusta solo entre los dos extremos.
-
-   EXCEPCIÓN — se mantienen en px fijo:
-   - borders (2px, 3px) — no necesitan escalar
-   - gaps pequeños (16px, 24px) — ya son pequeños
-   - offsets de transform (0px) — son posicionales exactos
+   2) SECTION_STYLES
 ========================================================= */
 
 const SECTION_STYLES = {
 
-  /* -----------------------------------------
-     SHARED — contenedor global
-  ----------------------------------------- */
   shared: {
     containerMaxWidth: '1440px',
     containerPx: 'clamp(20px, 3.5vw, 48px)',
-    // ↑ reemplaza containerPxMobile/Tablet/Desktop
   },
 
-  /* -----------------------------------------
-     HERO
-  ----------------------------------------- */
   hero: {
-    // TIPOGRAFÍA
     titleFont: 'clamp(22px, 3.5vw, 50px)',
     descFont: 'clamp(13px, 1.2vw, 17px)',
-
-    // ESPACIADO — ahora todo clamp
-    heroHeight: '84vh',                        // vh ya es fluido por naturaleza
+    heroHeight: '84vh',
     heroMinHeight: 'clamp(300px, 60vh, 700px)',
-    contentPb: 'clamp(80px, 8vw, 128px)',     // antes: 100/96/128px
-    titleMaxWidth: 'clamp(500px, 60vw, 860px)',   // antes: fijo 860px
-    descMaxWidth: 'clamp(300px, 45vw, 672px)',   // antes: fijo 672px
-    controlsBottom: 'clamp(20px, 2.5vw, 32px)',   // antes: fijo 32px
-    controlsLeft: 'clamp(20px, 3vw, 48px)',      // antes: mobile 20 / desktop 48
+    contentPb: 'clamp(80px, 8vw, 128px)',
+    titleMaxWidth: 'clamp(500px, 60vw, 860px)',
+    descMaxWidth: 'clamp(300px, 45vw, 672px)',
+    controlsBottom: 'clamp(20px, 2.5vw, 32px)',
+    controlsLeft: 'clamp(20px, 3vw, 48px)',
   },
 
-  /* -----------------------------------------
-     EVENTOS
-  ----------------------------------------- */
   events: {
     // TIPOGRAFÍA
     titleFont: 'clamp(20px, 2.5vw, 28px)',
-    eventMonthFont: 'clamp(10px, 0.8vw, 14px)',
-    eventDayFont: 'clamp(28px, 2.5vw, 40px)',
-    eventTitleFont: 'clamp(11px, 0.9vw, 14px)',
+    eventMonthFont: 'clamp(11px, 0.9vw, 13px)',   // ← corregido: eliminada duplicación
+    eventDayFont: 'clamp(32px, 3vw, 44px)',
+    eventTitleFont: 'clamp(12px, 1vw, 15px)',
     eventMetaFont: 'clamp(10px, 0.7vw, 12px)',
 
-    // ESPACIADO
-    sectionPy: 'clamp(28px, 3vw, 42px)',   // antes: 28/36/42px
-    titleGap: 'clamp(20px, 4.5vw, 64px)', // antes: mobile 20 / desktop 64
-    tickerGap: '80px',                      // fijo — es decorativo
-    articleGap: '24px',                      // fijo — gap pequeño
-    articleBorder: '2px',                    // fijo — border
-    articlePl: 'clamp(16px, 1.8vw, 24px)', // antes: fijo 24px
+    // ESPACIADO / ESTRUCTURA
+    sectionPy: 'clamp(14px, 1.5vw, 22px)',
+    titleGap: 'clamp(20px, 4.5vw, 64px)',
+    tickerGap: 'clamp(24px, 2vw, 40px)',
+    articleGap: 'clamp(12px, 1.4vw, 18px)',
+    articleBorder: '2px',
+    articlePl: 'clamp(16px, 1.8vw, 24px)',
+    articlePy: 'clamp(8px, 1vw, 12px)',
+
+    articleMinWidth: 'clamp(320px, 30vw, 440px)',
+    articleMinHeight: 'clamp(56px, 5vw, 70px)',
+    dateColWidth: 'clamp(44px, 4vw, 56px)',
+    titleMaxWidth: 'clamp(180px, 18vw, 260px)',
+    titleMinHeight: '0px',
+
+    monthLineHeight: '2',
+    dayLineHeight: '0.85',
+    titleLineHeight: '1.15',
   },
 
-  /* -----------------------------------------
-     TRAYECTORIA
-  ----------------------------------------- */
   trajectory: {
-    // TIPOGRAFÍA
     sectionTitleFont: 'clamp(18px, 1.8vw, 28px)',
     bodyFont: 'clamp(20px, 2.2vw, 36px)',
     numberFont: 'clamp(32px, 3vw, 48px)',
-
-    // ESPACIADO
-    sectionHeight: 'clamp(380px, 35vw, 430px)', // antes: auto/auto/430px
-    leftColumnPy: 'clamp(32px, 3.5vw, 40px)',  // antes: pt 40 / pb 40
-    lineHeight: 'clamp(80px, 9vw, 128px)',    // antes: fijo 128px
-    dotsOffsetY: 'clamp(24px, 3vw, 40px)',     // antes: fijo 40px
-    imageWidthDesktop: '55%',                         // % ya es fluido
-    imageHeight: '100%',                        // % ya es fluido
-
-    // Offsets de transform — se mantienen en 0px (posicionales exactos)
+    sectionHeight: 'clamp(380px, 35vw, 430px)',
+    leftColumnPy: 'clamp(32px, 3.5vw, 40px)',
+    lineHeight: 'clamp(80px, 9vw, 128px)',
+    dotsOffsetY: 'clamp(24px, 3vw, 40px)',
+    imageWidthDesktop: '55%',
+    imageHeight: '100%',
     blockOffsetX: '0px',
     blockOffsetY: '0px',
     lineOffsetX: '0px',
@@ -146,81 +121,53 @@ const SECTION_STYLES = {
     textOffsetY: '0px',
   },
 
-  /* -----------------------------------------
-     SOCIOS CORPORATIVOS
-  ----------------------------------------- */
   partners: {
-    // TIPOGRAFÍA
     titleFont: 'clamp(26px, 3vw, 40px)',
-
-    // ESPACIADO
-    sectionPy: 'clamp(30px, 3vw, 80px)',  // antes: 56/80/128px
-    titleMb: 'clamp(16px, 2vw, 24px)', // antes: clamp(32px, 3.5vw, 48px)
-    gridGap: '12px',                      // fijo — gap pequeño
-    logoCardPadding: 'clamp(8px, 0.7vw, 14px)', // antes: fijo 16px
+    sectionPy: 'clamp(30px, 3vw, 80px)',
+    titleMb: 'clamp(16px, 2vw, 24px)',
+    gridGap: '12px',
+    logoCardPadding: 'clamp(8px, 0.7vw, 14px)',
   },
 
-  /* -----------------------------------------
-     MEMBRESÍA
-  ----------------------------------------- */
   membership: {
-    // TIPOGRAFÍA
     labelFont: 'clamp(12px, 1.5vw, 26px)',
     titleFont: 'clamp(22px, 3vw, 50px)',
     buttonFont: 'clamp(12px, 0.9vw, 16px)',
-
-    // ESPACIADO
-    sectionHeight: 'clamp(360px, 32vw, 430px)', // antes: auto/auto/430px
-    contentPy: 'clamp(32px, 3.5vw, 48px)',  // antes: 40/48/48px
-    rowGap: '16px',                        // fijo — gap pequeño
-    titleMaxWidth: '90%',                         // % ya es fluido
-    buttonPx: 'clamp(28px, 3vw, 40px)',     // antes: fijo 40px
-    buttonPy: 'clamp(12px, 1.2vw, 16px)',   // antes: fijo 16px
+    sectionHeight: 'clamp(360px, 32vw, 430px)',
+    contentPy: 'clamp(32px, 3.5vw, 48px)',
+    rowGap: '16px',
+    titleMaxWidth: '90%',
+    buttonPx: 'clamp(28px, 3vw, 40px)',
+    buttonPy: 'clamp(12px, 1.2vw, 16px)',
   },
 
-  /* -----------------------------------------
-     IMAGEN FULL WIDTH
-  ----------------------------------------- */
   servicesImage: {
-    height: 'clamp(280px, 35vw, 580px)', // antes: 280/420/580px
+    height: 'clamp(280px, 35vw, 580px)',
   },
 
-  /* -----------------------------------------
-     BARRA DE SERVICIOS
-  ----------------------------------------- */
   servicesBar: {
-    // TIPOGRAFÍA
     titleFont: 'clamp(16px, 1.6vw, 24px)',
     bodyFont: 'clamp(13px, 1vw, 16px)',
     ctaFont: 'clamp(16px, 1.5vw, 24px)',
-
-    // ESPACIADO
-    minHeight: 'clamp(180px, 15vw, 220px)', // antes: mobile 180 / desktop 220
-    sectionPy: 'clamp(40px, 4vw, 48px)',    // antes: 40/48px
-    contentGap: 'clamp(40px, 6vw, 80px)',    // antes: fijo 80px desktop
-    ctaMr: 'clamp(0px, 2vw, 25px)',     // antes: fijo 25px desktop
+    minHeight: 'clamp(180px, 15vw, 220px)',
+    sectionPy: 'clamp(40px, 4vw, 48px)',
+    contentGap: 'clamp(40px, 6vw, 80px)',
+    ctaMr: 'clamp(0px, 2vw, 25px)',
   },
 
-  /* -----------------------------------------
-     FAQ
-  ----------------------------------------- */
   faq: {
-    // TIPOGRAFÍA
     titleFont: 'clamp(20px, 2vw, 30px)',
     questionFont: 'clamp(14px, 1vw, 18px)',
     answerFont: 'clamp(13px, 0.9vw, 16px)',
-
-    // ESPACIADO
-    sectionPy: 'clamp(56px, 7vw, 96px)',   // antes: mobile 56 / desktop 96
-    titleMb: 'clamp(28px, 3vw, 40px)',   // antes: fijo 40px
-    articleSpacing: 'clamp(20px, 2vw, 28px)',   // antes: fijo 28px
-    contentMaxWidth: '896px',                     // fijo — es un max-width de contenido
+    sectionPy: 'clamp(56px, 7vw, 96px)',
+    titleMb: 'clamp(28px, 3vw, 40px)',
+    articleSpacing: 'clamp(20px, 2vw, 28px)',
+    contentMaxWidth: '896px',
   },
 };
 
 /* =========================================================
-   3) VARIABLES CSS — ahora mucho más limpias
-   (un solo nombre por propiedad, sin Mobile/Tablet/Desktop)
+   3) VARIABLES CSS
 ========================================================= */
 
 const SHARED_VARS: CSSProperties = {
@@ -252,6 +199,15 @@ const EVENTS_VARS: CSSProperties = {
   ['--events-article-gap' as string]: SECTION_STYLES.events.articleGap,
   ['--events-article-border' as string]: SECTION_STYLES.events.articleBorder,
   ['--events-article-pl' as string]: SECTION_STYLES.events.articlePl,
+  ['--events-article-py' as string]: SECTION_STYLES.events.articlePy,
+  ['--events-article-min-width' as string]: SECTION_STYLES.events.articleMinWidth,
+  ['--events-article-min-height' as string]: SECTION_STYLES.events.articleMinHeight,
+  ['--events-date-col-width' as string]: SECTION_STYLES.events.dateColWidth,
+  ['--events-title-max-width' as string]: SECTION_STYLES.events.titleMaxWidth,
+  ['--events-title-min-height' as string]: SECTION_STYLES.events.titleMinHeight,
+  ['--events-month-line-height' as string]: SECTION_STYLES.events.monthLineHeight,
+  ['--events-day-line-height' as string]: SECTION_STYLES.events.dayLineHeight,
+  ['--events-title-line-height' as string]: SECTION_STYLES.events.titleLineHeight,
 };
 
 const TRAJECTORY_VARS: CSSProperties = {
@@ -317,7 +273,7 @@ const FAQ_VARS: CSSProperties = {
 };
 
 /* =========================================================
-   4) CLASE CONTENEDOR — ahora una sola variable de padding
+   4) CLASE CONTENEDOR
 ========================================================= */
 
 const CONTAINER_CLASS =
@@ -344,8 +300,7 @@ function HeroSection({
       {HERO_SLIDES.map((slide, index) => (
         <div
           key={index}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentHeroSlide ? 'opacity-100' : 'opacity-0'
-            }`}
+          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentHeroSlide ? 'opacity-100' : 'opacity-0'}`}
         >
           <div
             className="absolute inset-0 bg-cover bg-center scale-105 animate-[slow-zoom_20s_infinite]"
@@ -355,10 +310,7 @@ function HeroSection({
         </div>
       ))}
 
-      {/* pb usa clamp — sin breakpoints */}
-      <div
-        className={`${CONTAINER_CLASS} relative z-10 h-full flex flex-col justify-end pb-[var(--hero-content-pb)]`}
-      >
+      <div className={`${CONTAINER_CLASS} relative z-10 h-full flex flex-col justify-end pb-[var(--hero-content-pb)]`}>
         <div className="w-full max-w-[var(--hero-title-max-w)] space-y-4 md:space-y-6 animate-fade-up">
           <h2
             style={{ fontSize: 'var(--hero-title-font)' }}
@@ -366,7 +318,6 @@ function HeroSection({
           >
             {HERO_SLIDES[currentHeroSlide].title}
           </h2>
-
           <p
             style={{ fontSize: 'var(--hero-desc-font)' }}
             className="hidden sm:block text-white/100 font-inter font-normal leading-relaxed max-w-[var(--hero-desc-max-w)]"
@@ -375,10 +326,7 @@ function HeroSection({
           </p>
         </div>
 
-        {/* controls — left y bottom usan clamp, sin breakpoints */}
-        <div
-          className="absolute flex items-center gap-6 md:gap-12 bottom-[var(--hero-controls-bottom)] left-[var(--hero-controls-left)]"
-        >
+        <div className="absolute flex items-center gap-6 md:gap-12 bottom-[var(--hero-controls-bottom)] left-[var(--hero-controls-left)]">
           <div className="flex items-center gap-4 md:gap-6">
             <button
               onClick={() => setCurrentHeroSlide((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length)}
@@ -399,14 +347,12 @@ function HeroSection({
               </svg>
             </button>
           </div>
-
           <div className="flex items-center gap-2 md:gap-3">
             {HERO_SLIDES.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentHeroSlide(index)}
-                className={`h-2 rounded-full transition-all duration-300 ${index === currentHeroSlide ? 'bg-white w-6 md:w-8' : 'bg-white/40 w-2'
-                  }`}
+                className={`h-2 rounded-full transition-all duration-300 ${index === currentHeroSlide ? 'bg-white w-6 md:w-8' : 'bg-white/40 w-2'}`}
                 aria-label={`Ir al slide ${index + 1}`}
               />
             ))}
@@ -417,21 +363,13 @@ function HeroSection({
   );
 }
 
-/* =========================================================
-   6) SECTION: PRÓXIMOS EVENTOS
-========================================================= */
-
 function EventsSection() {
   return (
     <section
       style={{ ...SHARED_VARS, ...EVENTS_VARS }}
       className="bg-gradient-to-tr from-brand-blue-deep to-brand-blue-bright overflow-hidden relative group py-[var(--events-section-py)]"
     >
-      <div className="absolute inset-0 bg-dots opacity-50 pointer-events-none" />
-
-      <div
-        className={`${CONTAINER_CLASS} relative z-10 flex flex-col items-start lg:flex-row lg:items-center gap-[var(--events-title-gap)]`}
-      >
+      <div className={`${CONTAINER_CLASS} relative z-10 flex flex-col items-start lg:flex-row lg:items-center gap-[var(--events-title-gap)]`}>
         <h2
           style={{ fontSize: 'var(--events-title-font)' }}
           className="text-white font-inter font-bold whitespace-nowrap shrink-0"
@@ -440,31 +378,73 @@ function EventsSection() {
         </h2>
 
         <div className="w-full relative overflow-hidden">
-          <div className="flex animate-ticker-slow gap-[var(--events-ticker-gap)] group-hover:pause">
+          <div
+            className="flex animate-ticker-slow gap-[var(--events-ticker-gap)] group-hover:pause"
+            style={{ willChange: 'transform', transform: 'translateZ(0)' }}
+          >
             {[...MOCK_EVENTS, ...MOCK_EVENTS].map((event, i) => (
               <article
                 key={i}
-                className="flex items-center shrink-0 h-full gap-[var(--events-article-gap)] border-l-[var(--events-article-border)] border-white pl-[var(--events-article-pl)]"
+                className="
+                  grid
+                  grid-cols-[var(--events-date-col-width)_1px_minmax(0,1fr)]
+                  items-center
+                  shrink-0
+                  min-w-[var(--events-article-min-width)]
+                  min-h-[var(--events-article-min-height)]
+                  gap-[var(--events-article-gap)]
+                  border-l-[var(--events-article-border)]
+                  border-white
+                  pl-[var(--events-article-pl)]
+                  py-[var(--events-article-py)]
+                "
               >
-                <div className="flex flex-col leading-none text-white font-inter font-semibold opacity-90">
-                  <span style={{ fontSize: 'var(--events-month-font)' }} className="uppercase tracking-widest">
+                {/* FECHA */}
+                <div className="flex flex-col justify-center items-center text-white font-inter font-semibold">
+                  <span
+                    style={{
+                      fontSize: 'var(--events-month-font)',
+                      lineHeight: 'var(--events-month-line-height)',
+                    }}
+                    className="uppercase tracking-[0.18em] text-center w-full block"
+                  >
                     {event.month}
                   </span>
-                  <span style={{ fontSize: 'var(--events-day-font)' }}>
+                  <span
+                    style={{
+                      fontSize: 'var(--events-day-font)',
+                      lineHeight: 'var(--events-day-line-height)',
+                    }}
+                    className="text-center w-full block"
+                  >
                     {event.day}
                   </span>
                 </div>
 
-                <div className="flex flex-col gap-1.5 pr-6 md:pr-8">
+                {/* LÍNEA SEPARADORA */}
+                <div className="w-[1.5px] self-stretch bg-white my-2" />
+
+                {/* CONTENIDO */}
+                <div className="min-w-0 grid content-center gap-2">
                   <h3
-                    style={{ fontSize: 'var(--events-event-title-font)' }}
-                    className="text-white font-inter font-bold tracking-wide uppercase line-clamp-1"
+                    style={{
+                      fontSize: 'var(--events-event-title-font)',
+                      lineHeight: 'var(--events-title-line-height)',
+                    }}
+                    className="
+                      text-white
+                      font-inter
+                      font-bold
+                      uppercase
+                      line-clamp-2
+                      max-w-[var(--events-title-max-width)]
+                    "
                   >
                     {event.title}
                   </h3>
                   <div
                     style={{ fontSize: 'var(--events-meta-font)' }}
-                    className="flex items-center gap-4 text-white/70 font-inter font-normal"
+                    className="flex flex-wrap items-center gap-x-4 gap-y-2 text-white/70 font-inter font-normal"
                   >
                     <span className="flex items-center gap-1.5 shrink-0">
                       <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -500,9 +480,7 @@ function TrajectorySection() {
       style={{ ...SHARED_VARS, ...TRAJECTORY_VARS }}
       className="bg-[#232323] overflow-hidden flex items-center relative min-h-[var(--trajectory-section-height)]"
     >
-      <div
-        className={`${CONTAINER_CLASS} h-full flex flex-col items-start justify-center lg:flex-row lg:items-center lg:justify-between py-[var(--trajectory-left-column-py)] lg:py-0`}
-      >
+      <div className={`${CONTAINER_CLASS} h-full flex flex-col items-start justify-center lg:flex-row lg:items-center lg:justify-between py-[var(--trajectory-left-column-py)] lg:py-0`}>
         <div className="flex flex-col justify-center lg:w-1/2 relative z-10 w-full">
           <div
             className="relative"
@@ -514,31 +492,21 @@ function TrajectorySection() {
             >
               Britcham Peru: 37 Años de Trayectoria
             </h2>
-
             <div className="flex gap-6 md:gap-8 items-start">
               <div
                 className="w-[3px] h-[var(--trajectory-line-height)] bg-white shrink-0 mt-2"
                 style={{ transform: 'translate(var(--trajectory-line-offset-x), var(--trajectory-line-offset-y))' }}
               />
-              <div
-                className="max-w-xl"
-                style={{ transform: 'translate(var(--trajectory-text-offset-x), var(--trajectory-text-offset-y))' }}
-              >
+              <div style={{ transform: 'translate(var(--trajectory-text-offset-x), var(--trajectory-text-offset-y))' }} className="max-w-xl">
                 <p
                   style={{ fontSize: 'var(--trajectory-body-font)' }}
                   className="text-white font-libre font-bold leading-[1.2]"
                 >
-                  <span
-                    style={{ fontSize: 'var(--trajectory-number-font)' }}
-                    className="font-libre font-bold mr-2"
-                  >
-                    37
-                  </span>
+                  <span style={{ fontSize: 'var(--trajectory-number-font)' }} className="font-libre font-bold mr-2">37</span>
                   años impulsando el comercio institucional entre el Perú y el Reino Unido.
                 </p>
               </div>
             </div>
-
             <div className="flex gap-2 mt-8 lg:translate-y-[var(--trajectory-dots-offset-y)]">
               <div className="w-2 h-2 rounded-full bg-white" />
               <div className="w-2 h-2 rounded-full bg-white/40" />
@@ -578,7 +546,6 @@ function CorporatePartnersSection() {
             Socios Corporativos
           </h2>
         </div>
-
         <div className="grid grid-cols-2 md:grid-cols-3 gap-[var(--partners-grid-gap)] items-center">
           {CORPORATE_LOGOS.map((logo, i) => (
             <div key={i} className="flex items-center justify-center p-[var(--partners-logo-card-padding)]">
@@ -607,10 +574,7 @@ function MembershipSection() {
       className="bg-[#0151F2] flex items-start relative overflow-hidden min-h-[var(--membership-section-height)]"
     >
       <div className="absolute inset-0 bg-dots opacity-40 pointer-events-none" />
-
-      <div
-        className={`${CONTAINER_CLASS} relative z-10 h-full flex flex-col justify-between py-[var(--membership-content-py)] gap-8`}
-      >
+      <div className={`${CONTAINER_CLASS} relative z-10 h-full flex flex-col justify-between py-[var(--membership-content-py)] gap-8`}>
         <div className="flex items-center gap-[var(--membership-row-gap)]">
           <h2
             style={{ fontSize: 'var(--membership-label-font)' }}
@@ -620,14 +584,12 @@ function MembershipSection() {
           </h2>
           <div className="hidden sm:block h-[3px] bg-white/90 flex-1" />
         </div>
-
         <h3
           style={{ fontSize: 'var(--membership-title-font)' }}
           className="text-white font-libre font-bold leading-[1.2] max-w-[var(--membership-title-max-w)]"
         >
           Únase a la mayor red de oportunidades entre Perú y el Reino Unido.
         </h3>
-
         <div className="flex items-center justify-between w-full">
           <Link
             href="/contacto"
@@ -671,9 +633,7 @@ function ServicesBarSection() {
       style={{ ...SHARED_VARS, ...SERVICES_BAR_VARS }}
       className="bg-[#212121] flex items-center min-h-[var(--services-bar-min-height)] py-[var(--services-bar-py)]"
     >
-      <div
-        className={`${CONTAINER_CLASS} flex flex-col items-center text-center lg:flex-row lg:items-center lg:justify-between lg:text-left gap-[var(--services-bar-gap)]`}
-      >
+      <div className={`${CONTAINER_CLASS} flex flex-col items-center text-center lg:flex-row lg:items-center lg:justify-between lg:text-left gap-[var(--services-bar-gap)]`}>
         <div className="space-y-3 w-full lg:max-w-4xl">
           <h2
             style={{ fontSize: 'var(--services-bar-title-font)' }}
@@ -688,7 +648,6 @@ function ServicesBarSection() {
             Brindamos consultoría estratégica, networking institucional y acceso a mercados clave para potenciar las inversiones bilaterales.
           </p>
         </div>
-
         <div className="shrink-0 mr-[var(--services-bar-cta-mr)]">
           <Link href="/servicios" className="group flex items-center gap-2 text-white hover:text-white/80 transition-colors">
             <span
@@ -726,7 +685,6 @@ function FaqSection() {
         >
           Preguntas Frecuentes sobre BritCham Peru
         </h2>
-
         <div className="space-y-[var(--faq-article-spacing)]">
           {FAQ_ITEMS.map((item, index) => (
             <article key={index}>
